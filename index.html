@@ -117,6 +117,7 @@
                         <li><a href="#home" class="text-sm font-medium hover:text-accent transition-colors duration-300">Home</a></li>
                         <li><a href="#skills" class="text-sm font-medium hover:text-accent transition-colors duration-300">Skills</a></li>
                         <li><a href="#about" class="text-sm font-medium hover:text-accent transition-colors duration-300">About</a></li>
+                        <li><a href="#contact" class="text-sm font-medium hover:text-accent transition-colors duration-300">Contact</a></li>
                     </ul>
                 </nav>
                 <!-- Mobile menu button -->
@@ -158,65 +159,91 @@
         </div>
     </section>
 
-    <!-- Skills / Focus Areas Section -->
-    <section id="skills" class="py-24 bg-darker/50">
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 relative z-10 bg-darker/50">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="mb-16 md:mb-24 text-center md:text-left flex items-center gap-4">
-                <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block">
-                    Focus Areas & Proficiencies
-                    <div class="absolute -bottom-2 left-0 w-1/2 h-1 bg-accent rounded-full"></div>
+            <div class="mb-16 md:text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block mb-4">
+                    Core Focus & Capabilities
+                    <div class="absolute -bottom-2 left-0 md:left-1/4 w-12 md:w-1/2 h-1 bg-accent rounded-full"></div>
                 </h2>
-                <div class="hidden md:block flex-grow h-[1px] bg-white/10 ml-4"></div>
+                <p class="text-light/70 max-w-2xl mx-auto mt-6">Specialized in building and maintaining the invisible engines that power modern applications.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                
-                <!-- Skill Card 1: Backend Development -->
-                <div class="group bg-dark border border-white/5 p-8 rounded-xl hover:-translate-y-2 hover:border-accent/50 hover:shadow-[0_10px_30px_-15px_rgba(102,252,241,0.3)] transition-all duration-300">
-                    <div class="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
-                        <i class="fa-brands fa-python text-2xl text-accent"></i>
-                        <i class="fa-brands fa-java text-2xl text-accent ml-2"></i>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-accent transition-colors">Backend Development</h3>
-                    <p class="text-sm text-light/70 leading-relaxed">
-                        Building efficient, secure, and scalable server-side logic and core algorithms using robust frameworks in Python and Java.
-                    </p>
-                </div>
-
-                <!-- Skill Card 2: System Configuration -->
-                <div class="group bg-dark border border-white/5 p-8 rounded-xl hover:-translate-y-2 hover:border-accent/50 hover:shadow-[0_10px_30px_-15px_rgba(102,252,241,0.3)] transition-all duration-300">
-                    <div class="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Skill 1 -->
+                <div class="glass p-8 rounded-2xl border border-white/5 hover:border-accent/50 transition-all duration-300 hover:-translate-y-2 group">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent/10 transition-colors">
                         <i class="fas fa-server text-2xl text-accent"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-accent transition-colors">System Configuration</h3>
-                    <p class="text-sm text-light/70 leading-relaxed">
-                        Configuring and optimizing server environments, background processes, and ensuring high availability and system reliability.
-                    </p>
+                    <h3 class="text-xl font-bold text-white mb-3">Backend Development</h3>
+                    <p class="text-light/70 text-sm leading-relaxed">Crafting robust, scalable server-side logic and core application functionality.</p>
                 </div>
 
-                <!-- Skill Card 3: API Architecture -->
-                <div class="group bg-dark border border-white/5 p-8 rounded-xl hover:-translate-y-2 hover:border-accent/50 hover:shadow-[0_10px_30px_-15px_rgba(102,252,241,0.3)] transition-all duration-300">
-                    <div class="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
+                <!-- Skill 2 -->
+                <div class="glass p-8 rounded-2xl border border-white/5 hover:border-accent/50 transition-all duration-300 hover:-translate-y-2 group delay-100">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent/10 transition-colors">
+                        <i class="fas fa-cogs text-2xl text-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">System Configuration</h3>
+                    <p class="text-light/70 text-sm leading-relaxed">Optimizing background processes and ensuring seamless server environments.</p>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="glass p-8 rounded-2xl border border-white/5 hover:border-accent/50 transition-all duration-300 hover:-translate-y-2 group delay-200">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent/10 transition-colors">
                         <i class="fas fa-network-wired text-2xl text-accent"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-accent transition-colors">API Architecture</h3>
-                    <p class="text-sm text-light/70 leading-relaxed">
-                        Designing and implementing robust RESTful APIs to facilitate seamless data integration and communication between services.
-                    </p>
+                    <h3 class="text-xl font-bold text-white mb-3">API Architecture</h3>
+                    <p class="text-light/70 text-sm leading-relaxed">Designing RESTful APIs for secure and efficient client-server communication.</p>
                 </div>
 
-                <!-- Skill Card 4: Database Management -->
-                <div class="group bg-dark border border-white/5 p-8 rounded-xl hover:-translate-y-2 hover:border-accent/50 hover:shadow-[0_10px_30px_-15px_rgba(102,252,241,0.3)] transition-all duration-300">
-                    <div class="w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors">
+                <!-- Skill 4 -->
+                <div class="glass p-8 rounded-2xl border border-white/5 hover:border-accent/50 transition-all duration-300 hover:-translate-y-2 group delay-300">
+                    <div class="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent/10 transition-colors">
                         <i class="fas fa-database text-2xl text-accent"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-white mb-3 group-hover:text-accent transition-colors">Database Ops</h3>
-                    <p class="text-sm text-light/70 leading-relaxed">
-                        Structuring relational and NoSQL databases for optimal query performance, managing data integrity, and secure storage.
-                    </p>
+                    <h3 class="text-xl font-bold text-white mb-3">Database Ops</h3>
+                    <p class="text-light/70 text-sm leading-relaxed">Managing data integrity, query optimization, and structural database schemas.</p>
                 </div>
-
             </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="py-24 relative z-10">
+        <div class="max-w-3xl mx-auto px-6 lg:px-8">
+            <div class="mb-12 text-center flex flex-col items-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block mb-4">
+                    Send a Message
+                    <div class="absolute -bottom-2 left-1/4 w-1/2 h-1 bg-accent rounded-full"></div>
+                </h2>
+                <p class="text-light/70 max-w-lg">Have a question regarding backend configurations or want to collaborate? Drop a message below.</p>
+            </div>
+            
+            <form class="space-y-6 bg-dark/60 p-8 md:p-10 rounded-2xl border border-white/5 glass shadow-2xl transition-all duration-300 hover:border-white/10">
+                <div>
+                    <label for="sender-email" class="block text-sm font-medium text-light mb-2">Email Address</label>
+                    <input type="email" id="sender-email" name="sender-email" required
+                           class="w-full px-4 py-3 bg-darker/80 border border-white/10 rounded-lg text-white focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300 placeholder-light/30"
+                           placeholder="Your email address">
+                </div>
+                
+                <div>
+                    <label for="message" class="block text-sm font-medium text-light mb-2">Message</label>
+                    <textarea id="message" name="message" rows="5" required
+                              class="w-full px-4 py-3 bg-darker/80 border border-white/10 rounded-lg text-white focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300 placeholder-light/30 resize-none"
+                              placeholder="Your message here..."></textarea>
+                </div>
+                
+                <div class="pt-2">
+                    <button type="submit"
+                            class="w-full py-4 bg-transparent border border-accent text-accent font-semibold rounded-lg hover:bg-accent hover:text-dark transition-all duration-300 shadow-[0_0_10px_rgba(102,252,241,0.1)] hover:shadow-[0_0_20px_rgba(102,252,241,0.4)] flex justify-center items-center gap-2 group">
+                        <span>Send Message</span>
+                        <i class="fas fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"></i>
+                    </button>
+                </div>
+            </form>
         </div>
     </section>
 
