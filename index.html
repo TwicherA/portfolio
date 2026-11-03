@@ -141,7 +141,17 @@
 
         <!-- VIEW 1: Home Section -->
         <section id="home" class="page-section absolute inset-0 w-full h-full overflow-y-auto flex items-center justify-center opacity-0 invisible z-0">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col items-center text-center py-12">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col items-center text-center py-12 mt-12 md:mt-0 w-full">
+                
+                <!-- Profile Picture -->
+                <div class="relative mb-8 opacity-0 animate-fade-in-up group bg-transparent mx-auto flex justify-center">
+                    <!-- Image Wrapper -->
+                    <div class="w-56 h-56 md:w-80 md:h-80 mx-auto rounded-full border-4 border-accent flex items-center justify-center overflow-hidden transition-all duration-500 drop-shadow-[0_0_15px_rgba(102,252,241,0.4)] group-hover:drop-shadow-[0_0_35px_rgba(102,252,241,0.9)] bg-dark/20">
+                        <img src="Photo.png" alt="Profile Picture" 
+                             class="w-full h-full object-cover object-center scale-95 translate-y-2 transition-transform duration-500 group-hover:scale-110 group-hover:translate-y-0">
+                    </div>
+                </div>
+
                 <p class="text-accent font-medium tracking-wide mb-4 opacity-0 animate-fade-in-up">
                     Hi, my name is
                 </p>
@@ -235,7 +245,7 @@
 
                     <div class="mt-10 flex justify-center">
                         <a href="#skills" class="px-8 py-4 border border-accent text-accent font-semibold rounded hover:bg-accent hover:text-dark transition-all duration-300 animate-glow flex items-center gap-2 group">
-                            Explore My Skills <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            Discover more about me <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
                 </div>
@@ -291,7 +301,7 @@
 
                     <div class="mt-12 flex justify-center">
                         <a href="#contact" class="px-8 py-4 border border-accent text-accent font-semibold rounded hover:bg-accent hover:text-dark transition-all duration-300 animate-glow flex items-center gap-2 group">
-                            Let's Connect <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            Get In Touch <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
                 </div>
