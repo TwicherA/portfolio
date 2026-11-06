@@ -101,6 +101,9 @@
 <!-- h-screen and overflow-hidden prevent the entire page from scrolling -->
 <body class="antialiased selection:bg-accent selection:text-dark h-screen w-screen overflow-hidden flex flex-col relative">
 
+    <!-- Custom Cursor Glow -->
+    <div id="cursor-glow" class="fixed top-0 left-0 pointer-events-none z-[9999] w-24 h-24 rounded-full bg-[#66fcf1] blur-2xl opacity-20 hidden md:block transition-opacity duration-300"></div>
+
     <!-- Background Decorative Blobs -->
     <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
         <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-accentMuted rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
@@ -109,7 +112,7 @@
     </div>
 
     <!-- Fixed Navigation -->
-    <header class="w-full z-50 glass flex-shrink-0 h-20">
+    <header class="fixed top-0 left-0 w-full z-50 glass h-20">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 h-full">
             <div class="flex items-center justify-between h-full">
                 <div class="flex-shrink-0">
@@ -137,31 +140,31 @@
     </header>
 
     <!-- Main Content Area (Holds all the overlapping views) -->
-    <main class="flex-grow relative w-full overflow-hidden">
+    <main class="flex-grow relative w-full h-full overflow-hidden">
 
         <!-- VIEW 1: Home Section -->
-        <section id="home" class="page-section absolute inset-0 w-full h-full overflow-y-auto flex items-center justify-center opacity-0 invisible z-0">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col items-center text-center py-12 mt-12 md:mt-0 w-full">
+        <section id="home" class="page-section absolute inset-0 w-full h-full overflow-y-auto opacity-0 invisible z-0">
+            <div class="min-h-full flex flex-col items-center justify-center pt-28 pb-12 px-6 lg:px-8 mx-auto max-w-7xl text-center w-full">
                 
                 <!-- Profile Picture -->
                 <div class="relative mb-8 opacity-0 animate-fade-in-up group bg-transparent mx-auto flex justify-center">
                     <!-- Image Wrapper -->
-                    <div class="w-56 h-56 md:w-80 md:h-80 mx-auto rounded-full border-4 border-accent flex items-center justify-center overflow-hidden transition-all duration-500 drop-shadow-[0_0_15px_rgba(102,252,241,0.4)] group-hover:drop-shadow-[0_0_35px_rgba(102,252,241,0.9)] bg-dark/20">
+                    <div class="w-56 h-56 md:w-72 md:h-72 mx-auto rounded-full border-4 border-accent flex items-center justify-center overflow-hidden transition-all duration-500 drop-shadow-[0_0_15px_rgba(102,252,241,0.4)] group-hover:drop-shadow-[0_0_35px_rgba(102,252,241,0.9)] bg-dark/20">
                         <img src="Photo.png" alt="Profile Picture" 
                              class="w-full h-full object-cover object-center scale-95 translate-y-2 transition-transform duration-500 group-hover:scale-110 group-hover:translate-y-0">
                     </div>
                 </div>
 
-                <p class="text-accent font-medium tracking-wide mb-4 opacity-0 animate-fade-in-up">
+                <p class="text-accent font-medium tracking-wide mb-3 opacity-0 animate-fade-in-up">
                     Hi, my name is
                 </p>
-                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight opacity-0 animate-fade-in-up delay-100">
+                <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight opacity-0 animate-fade-in-up delay-100">
                     Allandrei Escoto Baniaga.
                 </h1>
-                <h2 class="text-3xl md:text-5xl font-semibold text-light/80 mb-8 opacity-0 animate-fade-in-up delay-200">
+                <h2 class="text-lg md:text-2xl font-semibold text-light/80 mb-6 opacity-0 animate-fade-in-up delay-200">
                     Architecting robust backend systems and configurations.
                 </h2>
-                <p class="max-w-2xl text-lg text-light/70 mb-10 leading-relaxed opacity-0 animate-fade-in-up delay-300">
+                <p class="max-w-2xl text-sm md:text-base text-light/70 mb-10 leading-relaxed opacity-0 animate-fade-in-up delay-300">
                     I'm an undergraduate Computer Science student at the <span class="text-accent font-medium">University of the Cordilleras</span>. 
                     I specialize in backend development, system architecture, and configuring background processes to ensure data integrity, scalability, and seamless server-side performance.
                 </p>
@@ -175,7 +178,7 @@
 
         <!-- VIEW 2: About Section -->
         <section id="about" class="page-section absolute inset-0 w-full h-full overflow-y-auto opacity-0 invisible z-0">
-            <div class="min-h-full flex flex-col justify-center py-12">
+            <div class="min-h-full flex flex-col justify-center pt-28 pb-12">
                 <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full">
                     <div class="mb-10 flex flex-col items-center text-center">
                         <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block mb-4">
@@ -254,7 +257,7 @@
 
         <!-- VIEW 3: Skills Section -->
         <section id="skills" class="page-section absolute inset-0 w-full h-full overflow-y-auto opacity-0 invisible z-0 bg-darker/30">
-            <div class="min-h-full flex flex-col justify-center py-12">
+            <div class="min-h-full flex flex-col justify-center pt-28 pb-12">
                 <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full">
                     <div class="mb-12 md:text-center">
                         <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block mb-4">
@@ -311,7 +314,7 @@
         <!-- VIEW 4: Contact & Footer Section -->
         <section id="contact" class="page-section absolute inset-0 w-full h-full overflow-y-auto opacity-0 invisible z-0 bg-darker/50 flex flex-col">
             
-            <div class="flex-grow flex items-center justify-center py-12">
+            <div class="flex-grow flex flex-col justify-center pt-28 pb-12">
                 <div class="max-w-3xl w-full mx-auto px-6 lg:px-8">
                     <div class="mb-10 text-center flex flex-col items-center">
                         <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block mb-4">
@@ -427,6 +430,25 @@
 
             // Initial load
             showSection(window.location.hash);
+
+            // Cursor Glow Logic
+            const cursorGlow = document.getElementById('cursor-glow');
+            document.addEventListener('mousemove', (e) => {
+                // The glow div is 96x96px (w-24 h-24). Subtracting 48px perfectly centers it under the cursor tip.
+                requestAnimationFrame(() => {
+                    cursorGlow.style.transform = `translate(${e.clientX - 48}px, ${e.clientY - 48}px)`;
+                });
+            });
+            
+            // Hide glow when cursor leaves the window
+            document.addEventListener('mouseleave', () => {
+                cursorGlow.style.opacity = '0';
+            });
+            
+            // Show glow when cursor enters the window
+            document.addEventListener('mouseenter', () => {
+                cursorGlow.style.opacity = '0.2';
+            });
         });
     </script>
 </body>
