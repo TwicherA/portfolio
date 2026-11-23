@@ -1,704 +1,444 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Allandrei Escoto Baniaga | CS Portfolio</title>
-    
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allandrei Escoto Baniaga | CS Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--acc:#66fcf1;--acc2:#45a29e;--bg:#0b0c10;--tx:#c5c6c7;--ln:rgba(255,255,255,.09)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{font:14px/1.5 Inter,system-ui,sans-serif;background:var(--bg);color:var(--tx);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block}
+::selection{background:var(--acc);color:var(--bg)}
+::-webkit-scrollbar{width:6px}::-webkit-scrollbar-thumb{background:var(--acc2);border-radius:3px}
+.bg{position:fixed;inset:0;z-index:-1;background:radial-gradient(42rem 30rem at 0 0,rgba(69,162,158,.22),transparent 60%),radial-gradient(36rem 30rem at 100% 25%,rgba(102,252,241,.11),transparent 60%),radial-gradient(40rem 30rem at 30% 110%,rgba(74,20,120,.3),transparent 60%)}
+#glow{position:fixed;top:0;left:0;width:96px;height:96px;border-radius:50%;background:var(--acc);filter:blur(40px);opacity:.16;pointer-events:none;z-index:9999;display:none}
+@media(hover:hover) and (min-width:768px){#glow{display:block}}
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tailwind Configuration -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        dark: '#0b0c10',
-                        darker: '#050608',
-                        light: '#c5c6c7',
-                        accent: '#66fcf1',
-                        accentMuted: '#45a29e',
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                        'blob': 'blob 7s infinite',
-                        'glow': 'glow 3s ease-in-out infinite alternate',
-                    },
-                    keyframes: {
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        glow: {
-                            '0%': { boxShadow: '0 0 10px rgba(102, 252, 241, 0.2)' },
-                            '100%': { boxShadow: '0 0 25px rgba(102, 252, 241, 0.6)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+/* Header */
+header{position:fixed;inset:0 0 auto;height:64px;z-index:50;background:rgba(11,12,16,.72);backdrop-filter:blur(12px);border-bottom:1px solid rgba(69,162,158,.2)}
+.bar{max-width:1280px;margin:auto;height:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:22px;font-weight:700;color:#fff;letter-spacing:-.04em}.logo span{color:var(--acc)}
+nav,.mnav{display:flex;gap:4px}.mnav{display:none}
+.nav-link{position:relative;padding:8px 14px;font-size:13.5px;font-weight:500;color:var(--tx);transition:color .2s}
+.nav-link::after{content:"";position:absolute;left:14px;right:14px;bottom:2px;height:2px;border-radius:2px;background:var(--acc);transform:scaleX(0);transition:transform .3s}
+.nav-link.on{color:var(--acc)}.nav-link.on::after{transform:scaleX(1)}
 
-    <style>
-        body {
-            background-color: #0b0c10;
-            color: #c5c6c7;
-        }
-        
-        /* Custom scrollbar for internal section scrolling */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0b0c10;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #45a29e;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #66fcf1;
-        }
+/* Pages: each one fills the viewport exactly */
+.page{position:absolute;inset:0;padding:84px 28px 72px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.page.on{opacity:1;visibility:visible;z-index:2}
+.wrap{max-width:1280px;margin:auto;height:100%;min-height:520px;display:flex;flex-direction:column}
+.hd{margin-bottom:14px}
+h2{font-size:clamp(22px,2.6vw,30px);font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15}
+h2::after{content:"";display:block;width:44px;height:3px;border-radius:3px;background:var(--acc);margin-top:6px}
+.hd p{margin-top:8px;font-size:13px;color:rgba(197,198,199,.7)}
+.c{background:rgba(18,22,28,.6);border:1px solid var(--ln);border-radius:14px;backdrop-filter:blur(8px);transition:border-color .25s,box-shadow .25s}
+.c:hover{border-color:rgba(102,252,241,.38);box-shadow:0 0 24px rgba(102,252,241,.07)}
+.fig{position:relative;flex:1;min-height:0;overflow:hidden;border-radius:10px;cursor:zoom-in}
+.fig img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transition:transform .5s}
+.fig:hover img{transform:scale(1.04)}
+.cv img{object-fit:contain;z-index:1}.cv:hover img{transform:none}
+.pl{font-size:11.5px;font-weight:500;padding:2px 9px;border-radius:99px;background:rgba(255,255,255,.05);color:var(--acc);border:1px solid rgba(102,252,241,.22);white-space:nowrap}
+.cta{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);display:inline-flex;gap:10px;align-items:center;padding:11px 24px;border:1px solid var(--acc);color:var(--acc);font-weight:600;font-size:13.5px;border-radius:99px;background:rgba(11,12,16,.8);backdrop-filter:blur(8px);box-shadow:0 0 14px rgba(102,252,241,.2);transition:background .25s,color .25s,box-shadow .25s}
+.cta:hover{background:var(--acc);color:var(--bg);box-shadow:0 0 26px rgba(102,252,241,.5)}
+.cta i{transition:transform .25s}.cta:hover i{transform:translateX(3px)}
+.cta.inl{position:static;transform:none}
 
-        /* Glassmorphism utility */
-        .glass {
-            background: rgba(11, 12, 16, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(69, 162, 158, 0.2);
-        }
+/* Home */
+.hero{height:100%;max-width:820px;margin:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.hero img{height:clamp(190px,38vh,420px);width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(102,252,241,.35));transition:filter .5s,transform .5s;margin-bottom:18px}
+.hero img:hover{filter:drop-shadow(0 0 38px rgba(102,252,241,.8));transform:scale(1.03)}
+.hero .hi{color:var(--acc);font-weight:500;margin-bottom:6px}
+h1{font-size:clamp(28px,4.6vw,52px);font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:10px}
+.hero h3{font-size:clamp(16px,2vw,22px);font-weight:600;color:rgba(197,198,199,.85);margin-bottom:14px}
+.hero p{max-width:640px;font-size:clamp(13px,1.3vw,15px);color:rgba(197,198,199,.72);line-height:1.65;margin-bottom:22px}
+.hero p b{color:var(--acc);font-weight:500}
+/* Desktop: photo gets its own column and uses nearly the full viewport height */
+@media(min-width:1024px){
+.hero{max-width:1200px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);grid-template-rows:1fr repeat(5,auto) 1fr;column-gap:56px;align-items:start;justify-items:start;text-align:left}
+.hero img{grid-column:1;grid-row:1/-1;align-self:center;justify-self:center;height:calc(100vh - 170px);min-height:440px;max-height:860px;width:auto;max-width:100%;margin:0}
+.hero>:not(img){grid-column:2}
+.hero>:nth-child(2){grid-row:2}.hero>:nth-child(3){grid-row:3}.hero>:nth-child(4){grid-row:4}.hero>:nth-child(5){grid-row:5}.hero>:nth-child(6){grid-row:6}
+.hero h1{font-size:clamp(28px,3.4vw,46px)}
+}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.page.on .rise{animation:up .7s ease-out both;animation-delay:var(--d,0s)}
 
-        /* Staggered animation delays */
-        .delay-100 { animation-delay: 100ms; }
-        .delay-200 { animation-delay: 200ms; }
-        .delay-300 { animation-delay: 300ms; }
-        .delay-400 { animation-delay: 400ms; }
-        
-        /* Page Section Transitions */
-        .page-section {
-            transition: opacity 0.5s ease-in-out, visibility 0.5s;
-        }
-    </style>
+/* Personal info */
+.pi{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2.1fr);gap:16px;flex:1;min-height:0}
+.lc,.rc{display:flex;flex-direction:column;gap:10px;min-height:0}.rc{gap:8px}
+.pt{flex:1;min-height:0;padding:10px;display:flex;flex-direction:column;position:relative;overflow:hidden;border-color:rgba(102,252,241,.3)}
+.pt::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,var(--acc),transparent)}
+.pt .fig{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(5,6,8,.9));margin-top:4px}
+.pt .fig img{object-position:bottom}
+.cap{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding:0 4px}
+.cap b{display:block;font-size:12.5px;color:var(--acc);font-weight:600}.cap span{font-size:11.5px;color:rgba(197,198,199,.6)}
+.on-b{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--acc)}
+.on-b::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--acc);animation:pulse 2s infinite}
+@keyframes pulse{50%{opacity:.3}}
+.act{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.act a{display:flex;align-items:center;gap:10px;padding:9px 12px;min-width:0}
+.act i{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:10px;background:rgba(102,252,241,.1);border:1px solid rgba(102,252,241,.3);color:var(--acc);transition:.25s}
+.act a:hover i{background:var(--acc);color:var(--bg)}
+.act b{display:block;font-size:12.5px;color:var(--acc);font-weight:600}.act span{display:block;font-size:11.5px;color:rgba(197,198,199,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nm{padding:10px 16px;background:linear-gradient(90deg,rgba(102,252,241,.13),rgba(5,6,8,.6));border-color:rgba(102,252,241,.3)}
+.nm small,.f small{display:block;font-size:11px;font-weight:600;color:var(--acc2)}
+.nm h3{font-size:clamp(18px,2vw,24px);font-weight:700;color:#fff;letter-spacing:-.01em;line-height:1.2}
+.g6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:1fr;gap:8px;flex:1;min-height:0}
+.f{padding:6px 12px;display:flex;flex-direction:column;justify-content:center}
+.f b{font-size:13px;font-weight:500;color:#fff;line-height:1.3}
+.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}
+
+/* Achievements */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;flex:1;min-height:0}
+.col{display:flex;flex-direction:column;min-height:0}
+.tl{display:flex;flex-direction:column;gap:8px;position:relative}
+.tl::before{content:"";position:absolute;left:16px;top:17px;bottom:17px;width:2px;background:linear-gradient(var(--acc2),rgba(69,162,158,.2))}
+.ti{display:flex;gap:12px;align-items:center}
+.dot{position:relative;width:34px;height:34px;border-radius:50%;background:var(--acc);color:var(--bg);display:grid;place-items:center;flex:none;font-size:13px;box-shadow:0 0 0 4px var(--bg)}
+.tc{flex:1;padding:8px 14px}
+.tc div{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.tc h3{font-size:14px;color:#fff;font-weight:600}.tc em{font-style:normal;font-size:12px;font-weight:600;color:var(--acc);white-space:nowrap}
+.tc p{font-size:12px;color:rgba(197,198,199,.72);line-height:1.45}
+.note{margin-top:10px;padding:8px 12px;font-size:12px;font-style:italic;display:flex;gap:8px;align-items:center;background:rgba(102,252,241,.05);border:1px solid rgba(102,252,241,.2);border-radius:10px}
+.note i{color:var(--acc)}
+.ph{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:10px;flex:1;min-height:90px}
+.ph .c{position:relative;display:flex}
+.ph .fig img{inset:6px;width:calc(100% - 12px);height:calc(100% - 12px)}
+.lvs{display:flex;flex-direction:column;gap:10px;flex:1;min-height:0}
+.lv{flex:1;min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:12px;padding:10px;position:relative;overflow:hidden;border-color:color-mix(in srgb,var(--k) 35%,transparent);background:linear-gradient(180deg,color-mix(in srgb,var(--k) 9%,transparent),rgba(5,6,8,.65))}
+.lv:hover{border-color:color-mix(in srgb,var(--k) 70%,transparent);box-shadow:0 0 28px color-mix(in srgb,var(--k) 15%,transparent)}
+.lv::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,var(--k),transparent)}
+.lv .fig{width:clamp(66px,6.5vw,92px);flex:none;border:1px solid color-mix(in srgb,var(--k) 25%,transparent);background:rgba(5,6,8,.7);min-height:90px}
+.lv .fig.w{width:clamp(96px,10vw,140px)}
+.lv .fig img{inset:3px;width:calc(100% - 6px);height:calc(100% - 6px)}
+.tx{display:flex;flex-direction:column;justify-content:center;min-width:0;padding-top:3px}
+.bd{align-self:flex-start;font-size:11px;font-weight:600;color:var(--k);background:color-mix(in srgb,var(--k) 14%,transparent);border:1px solid color-mix(in srgb,var(--k) 40%,transparent);padding:2px 10px;border-radius:99px;margin-bottom:5px}
+.tx .yr{font-size:12px;font-weight:600;color:var(--k)}
+.tx h3{font-size:14px;font-weight:700;color:#fff;line-height:1.3;margin:1px 0}
+.tx p{font-size:12px;color:rgba(197,198,199,.68);line-height:1.4}
+.tx small{margin-top:4px;font-size:11px;color:var(--k);opacity:.85}
+
+/* Family */
+.fam{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;flex:1;min-height:0}
+.fc{display:flex;flex-direction:column;overflow:hidden;min-height:0}
+.fc .fig{min-height:140px;border-radius:0}
+.cv::before{content:"";position:absolute;inset:-24px;background:var(--bg) center/cover;filter:blur(20px) brightness(.5)}
+.chip{align-self:flex-start;display:inline-flex;gap:6px;align-items:center;margin-bottom:8px;padding:3px 11px;border-radius:99px;font-size:11.5px;font-weight:600;color:var(--acc);background:rgba(11,12,16,.8);border:1px solid rgba(102,252,241,.4);backdrop-filter:blur(8px)}
+.fb{padding:12px 16px 14px;display:flex;flex-direction:column}
+.fb .r{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:6px}
+.fb h3{font-size:16px;font-weight:700;color:#fff;line-height:1.3;margin-bottom:6px}.fb .r h3{margin:0}
+.fb .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.fb p{font-size:13px;color:rgba(197,198,199,.75);line-height:1.5}
+
+/* Contact */
+.ct{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;flex:1;min-height:0}
+form.c{padding:22px;display:flex;flex-direction:column;gap:12px}
+.fld{display:flex;flex-direction:column;gap:6px}.fld.g{flex:1;min-height:0}
+label{font-size:13px;font-weight:500;color:var(--tx)}
+input,textarea{width:100%;padding:10px 14px;font:inherit;color:#fff;background:rgba(5,6,8,.8);border:1px solid var(--ln);border-radius:10px;outline:none;transition:border-color .25s,box-shadow .25s}
+input::placeholder,textarea::placeholder{color:rgba(197,198,199,.3)}
+input:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc)}
+textarea{flex:1;min-height:90px;resize:none}
+.send{padding:11px;font:inherit;font-weight:600;color:var(--acc);background:transparent;border:1px solid var(--acc);border-radius:10px;cursor:pointer;display:flex;gap:8px;align-items:center;justify-content:center;transition:.25s}
+.send:hover{background:var(--acc);color:var(--bg);box-shadow:0 0 20px rgba(102,252,241,.4)}
+.conn{padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px}
+.conn h3{font-size:22px;font-weight:700;color:#fff}
+.pill{display:flex;align-items:center;gap:12px;padding:9px 20px;border-radius:99px;background:var(--bg);border:1px solid var(--ln);font-size:13.5px;transition:border-color .25s,color .25s}
+.pill:hover{border-color:rgba(102,252,241,.5);color:#fff}.pill i{color:var(--acc)}
+.soc{display:flex;gap:14px}
+.soc a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.05);display:grid;place-items:center;font-size:17px;transition:.25s}
+.soc a:hover{background:var(--acc);color:var(--bg);box-shadow:0 0 15px rgba(102,252,241,.8)}
+.conn small{font-size:12px;color:rgba(197,198,199,.4)}
+
+/* Lightbox */
+#lb{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.92);padding:20px;cursor:zoom-out}
+#lb.open{display:flex}
+#lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:10px;box-shadow:0 20px 60px #000}
+#lb button{position:absolute;top:18px;right:18px;width:44px;height:44px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;transition:.2s}
+#lb button:hover{background:var(--acc);color:var(--bg)}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Tablet and phone: pages stack and may scroll, since they can't fit */
+@media(max-width:1023px){
+nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding:0 16px}
+.page{padding:80px 16px 24px}.wrap{height:auto;min-height:0}
+.pi,.two,.fam,.ct,.lvs{display:flex;flex-direction:column}
+.g6{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto;flex:none}
+.s2,.s3,.s4{grid-column:span 2}
+.pt{flex:none}.pt .fig{flex:none;height:360px}
+.fc{flex:none}.fc .fig{flex:none;height:320px}
+.ph{flex:none;height:150px}.lv{flex:none}.lv .fig{min-height:110px}
+.col{margin-bottom:24px}textarea{min-height:120px;flex:none}form.c .fld.g{flex:none}
+.cta,.cta.inl{position:static;transform:none;align-self:center;margin:22px 0 0}
+.hero{height:auto;padding-top:8px}
+}
+</style>
 </head>
-<body class="antialiased selection:bg-accent selection:text-dark h-screen w-screen overflow-hidden flex flex-col relative">
+<body>
+<div id="glow"></div>
+<div class="bg"></div>
 
-    <!-- Custom Cursor Glow -->
-    <div id="cursor-glow" class="fixed top-0 left-0 pointer-events-none z-[9999] w-24 h-24 rounded-full bg-[#66fcf1] blur-2xl opacity-20 hidden md:block transition-opacity duration-300"></div>
+<header>
+  <div class="bar">
+    <a href="#home" class="logo">A<span>E</span>B.</a>
+    <nav>
+      <a href="#home" class="nav-link">Home</a>
+      <a href="#personal-info" class="nav-link">Personal Info</a>
+      <a href="#achievements" class="nav-link">Achievements</a>
+      <a href="#family" class="nav-link">Family &amp; Friends</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+    <div class="mnav">
+      <a href="#home" class="nav-link" aria-label="Home"><i class="fas fa-home"></i></a>
+      <a href="#personal-info" class="nav-link" aria-label="Personal Info"><i class="fas fa-id-card"></i></a>
+      <a href="#achievements" class="nav-link" aria-label="Achievements"><i class="fas fa-trophy"></i></a>
+      <a href="#family" class="nav-link" aria-label="Family and Friends"><i class="fas fa-heart"></i></a>
+      <a href="#contact" class="nav-link" aria-label="Contact"><i class="fas fa-envelope"></i></a>
+    </div>
+  </div>
+</header>
 
-    <!-- Background Decorative Blobs -->
-    <div class="fixed top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-        <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-accentMuted rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
-        <div class="absolute top-[20%] right-[-10%] w-96 h-96 bg-accent rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
-        <div class="absolute bottom-[-20%] left-[20%] w-96 h-96 bg-[#2a0845] rounded-full mix-blend-multiply filter blur-[128px] opacity-30 animate-blob animation-delay-4000"></div>
+<!-- HOME -->
+<section id="home" class="page"><div class="wrap">
+  <div class="hero">
+    <img class="rise" src="full body.png" alt="Full Body Portrait">
+    <p class="hi rise" style="--d:.05s;margin-bottom:6px;max-width:none;font-size:inherit;color:var(--acc)">Hi, my name is</p>
+    <h1 class="rise" style="--d:.1s">Allandrei Escoto Baniaga.</h1>
+    <h3 class="rise" style="--d:.2s">Architecting robust backend systems and configurations.</h3>
+    <p class="rise" style="--d:.3s">I’m an undergraduate Computer Science student at the <b>University of the Cordilleras</b>. I specialize in backend development, system architecture, and configuring background processes to ensure data integrity, scalability, and seamless server-side performance.</p>
+    <a href="#personal-info" class="cta inl rise" style="--d:.4s">View Personal Information <i class="fas fa-arrow-right"></i></a>
+  </div>
+</div></section>
+
+<!-- PERSONAL INFO -->
+<section id="personal-info" class="page"><div class="wrap">
+  <div class="hd"><h2>Personal Information</h2><p>A structured overview of my personal profile, academic standing, and technical background.</p></div>
+  <div class="pi">
+    <div class="lc">
+      <div class="c pt">
+        <figure class="fig" data-lightbox><img src="Photo.png" alt="Allandrei Escoto Baniaga Formal Portrait"></figure>
+        <div class="cap"><div><b>Official Portrait</b><span>CS Undergraduate · UC</span></div><span class="on-b">Active</span></div>
+      </div>
+      <div class="act">
+        <a href="mailto:allandreib@gmail.com" class="c"><i class="fas fa-envelope"></i><div style="min-width:0"><b>Email</b><span>Send Mail</span></div></a>
+        <a href="tel:+639951326966" class="c"><i class="fas fa-phone"></i><div style="min-width:0"><b>Call</b><span>+63 995 132 6966</span></div></a>
+      </div>
+    </div>
+    <div class="rc">
+      <div class="c nm"><small>Full Name</small><h3>Allandrei Escoto Baniaga</h3></div>
+      <div class="g6">
+        <div class="c f"><small>Nickname</small><b>Tix</b></div>
+        <div class="c f"><small>Gender</small><b>Male</b></div>
+        <div class="c f"><small>Age</small><b>21 years old</b></div>
+        <div class="c f s2"><small>Birthday</small><b>August 29, 2005</b></div>
+        <div class="c f"><small>Zodiac Sign</small><b>Virgo</b></div>
+
+        <div class="c f"><small>Blood Type</small><b>AB+</b></div>
+        <div class="c f"><small>Weight</small><b>70 kg</b></div>
+        <div class="c f"><small>Height</small><b>5'5" (165 cm)</b></div>
+        <div class="c f"><small>BMI</small><b>25.7</b></div>
+        <div class="c f"><small>Eye Color</small><b>Dark Brown</b></div>
+        <div class="c f"><small>Hair Color</small><b>Black</b></div>
+
+        <div class="c f"><small>Citizenship</small><b>Filipino</b></div>
+        <div class="c f s2"><small>Place of Birth</small><b>Tondo, Manila</b></div>
+        <div class="c f"><small>Type of Birth</small><b>Single birth</b></div>
+        <div class="c f"><small>Birth Order</small><b>Eldest</b></div>
+        <div class="c f"><small>Religion</small><b>Anglican</b></div>
+
+        <div class="c f"><small>Civil Status</small><b>Single</b></div>
+        <div class="c f"><small>Year Level</small><b>1st Year</b></div>
+        <div class="c f s4"><small>Program</small><b>Bachelor of Science in Computer Science</b></div>
+
+        <div class="c f s3"><small>College</small><b>College of Information Technology &amp; Computer Science (CITCS)</b></div>
+        <div class="c f s3"><small>School</small><b>University of the Cordilleras · Ongoing</b></div>
+
+        <div class="c f s3"><small>Hobbies</small><b>Running, Gaming, Music &amp; Anime/Movies</b></div>
+        <div class="c f s3"><small>Interest &amp; Focus</small><b>Backend Development, API Architecture &amp; Database Ops</b></div>
+
+        <div class="c f s3"><small>Technical Skills</small><b>Back-end Configuration, Python, Flask, Django, Java</b></div>
+        <div class="c f s3"><small>Hometown Address</small><b>Bulacan, Philippines</b></div>
+
+        <div class="c f s2"><small>Currently Live At</small><b>Camp 8, Baguio City</b></div>
+        <div class="c f s2"><small>Email</small><b>allandreib@gmail.com</b></div>
+        <div class="c f s2"><small>Phone Number</small><b>+63 995 132 6966</b></div>
+      </div>
+    </div>
+  </div>
+  <a href="#achievements" class="cta">View My Achievements <i class="fas fa-arrow-right"></i></a>
+</div></section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" class="page"><div class="wrap">
+  <div class="two">
+    <div class="col">
+      <div class="hd"><h2>Athletic Achievements</h2><p>A chronological history of my regional and national milestones in Track and Field.</p></div>
+      <div class="tl">
+        <div class="ti"><span class="dot"><i class="fas fa-medal"></i></span>
+          <div class="c tc"><div><h3>Grade 6 (Elementary Level)</h3><em>2017</em></div><p>Track and Field Multi-Gold Medalist, Regional to National Level</p></div></div>
+        <div class="ti"><span class="dot"><i class="fas fa-running"></i></span>
+          <div class="c tc"><div><h3>Grade 7 to 10 (High School Level)</h3><em>2018 - 2022</em></div><p>Track and Field Multi-Gold Medalist, Regional Level (Stopped because of COVID)</p></div></div>
+        <div class="ti"><span class="dot"><i class="fas fa-stopwatch"></i></span>
+          <div class="c tc"><div><h3>Grade 11 to 12 (Senior High School Level)</h3><em>2022 - 2024</em></div><p>Co-Trainer/Coach for Elementary to High School Level Athletes, and Competed in Batang Pinoy and Regional to National Level Games</p></div></div>
+      </div>
+      <div class="note"><i class="fas fa-info-circle"></i>Records can be found in the official Sports Committee Commission uploaded documents for Athlete Standing.</div>
+      <div class="ph">
+        <div class="c"><figure class="fig" data-lightbox><img src="Ref2.jpg" alt="Track and Field Event" loading="lazy"></figure></div>
+        <div class="c"><figure class="fig" data-lightbox><img src="Ref1.jpg" alt="Palarong Pambansa 2018" loading="lazy"></figure></div>
+        <div class="c"><figure class="fig" data-lightbox><img src="Ref3.jpg" alt="Athlete with Coach and Medal" loading="lazy"></figure></div>
+      </div>
     </div>
 
-    <!-- Fixed Navigation -->
-    <header class="fixed top-0 left-0 w-full z-50 glass h-20">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8 h-full">
-            <div class="flex items-center justify-between h-full">
-                <div class="flex-shrink-0">
-                    <a href="#home" class="text-2xl font-bold text-white tracking-tighter">
-                        A<span class="text-accent">E</span>B.
-                    </a>
-                </div>
-                <nav class="hidden md:block">
-                    <ul class="flex space-x-6 lg:space-x-8">
-                        <li><a href="#home" class="nav-link text-sm font-medium transition-colors duration-300">Home</a></li>
-                        <li><a href="#about" class="nav-link text-sm font-medium transition-colors duration-300">About</a></li>
-                        <li><a href="#achievements" class="nav-link text-sm font-medium transition-colors duration-300">Achievements</a></li>
-                        <li><a href="#skills" class="nav-link text-sm font-medium transition-colors duration-300">Skills</a></li>
-                        <li><a href="#contact" class="nav-link text-sm font-medium transition-colors duration-300">Contact</a></li>
-                    </ul>
-                </nav>
-                <!-- Mobile menu -->
-                <div class="md:hidden flex gap-4">
-                     <a href="#home" class="nav-link text-xs"><i class="fas fa-home"></i></a>
-                     <a href="#about" class="nav-link text-xs"><i class="fas fa-user"></i></a>
-                     <a href="#achievements" class="nav-link text-xs"><i class="fas fa-trophy"></i></a>
-                     <a href="#skills" class="nav-link text-xs"><i class="fas fa-laptop-code"></i></a>
-                     <a href="#contact" class="nav-link text-xs"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Main Content Area -->
-    <main class="flex-grow relative w-full h-full overflow-hidden">
-
-        <!-- VIEW 1: Home Section -->
-        <section id="home" class="page-section absolute inset-0 w-full h-full overflow-y-auto opacity-0 invisible z-0">
-            <div class="min-h-full flex flex-col items-center justify-center pt-28 pb-12 px-6 lg:px-8 mx-auto max-w-7xl text-center w-full">
-                
-                <div class="relative mb-8 opacity-0 animate-fade-in-up group bg-transparent mx-auto flex justify-center">
-                    <div class="w-56 h-56 md:w-72 md:h-72 mx-auto rounded-full border-4 border-accent flex items-center justify-center overflow-hidden transition-all duration-500 drop-shadow-[0_0_15px_rgba(102,252,241,0.4)] group-hover:drop-shadow-[0_0_35px_rgba(102,252,241,0.9)] bg-dark/20">
-                        <img src="Photo.png" alt="Profile Picture" 
-                             class="w-full h-full object-cover object-center scale-95 translate-y-2 transition-transform duration-500 group-hover:scale-110 group-hover:translate-y-0">
-                    </div>
-                </div>
-
-                <p class="text-accent font-medium tracking-wide mb-3 opacity-0 animate-fade-in-up">
-                    Hi, my name is
-                </p>
-                <h1 class="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight opacity-0 animate-fade-in-up delay-100">
-                    Allandrei Escoto Baniaga.
-                </h1>
-                <h2 class="text-lg md:text-2xl font-semibold text-light/80 mb-6 opacity-0 animate-fade-in-up delay-200">
-                    Architecting robust backend systems and configurations.
-                </h2>
-                <p class="max-w-2xl text-sm md:text-base text-light/70 mb-10 leading-relaxed opacity-0 animate-fade-in-up delay-300">
-                    I'm an undergraduate Computer Science student at the <span class="text-accent font-medium">University of the Cordilleras</span>. 
-                    I specialize in backend development, system architecture, and configuring background processes to ensure data integrity, scalability, and seamless server-side performance.
-                </p>
-                <div class="flex gap-4 opacity-0 animate-fade-in-up delay-400">
-                    <a href="#about" class="px-8 py-4 border border-accent text-accent font-semibold rounded hover:bg-accent hover:text-dark transition-all duration-300 animate-glow flex items-center gap-2 group">
-                        Discover More About Me <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <!-- VIEW 2: About Section -->
-        <section id="about" class="page-section absolute inset-0 w-full h-full overflow-y-auto opacity-0 invisible z-0">
-            <div class="min-h-full flex flex-col justify-center pt-28 pb-12">
-                <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-                    <div class="mb-10 flex flex-col items-center text-center">
-                        <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block mb-4">
-                            About Me
-                            <div class="absolute -bottom-2 left-1/4 w-1/2 h-1 bg-accent rounded-full"></div>
-                        </h2>
-                        <p class="text-light/70 max-w-2xl mt-4 leading-relaxed">
-                            I'm Allandrei Escoto Baniaga, a highly motivated developer passionate about crafting robust background systems and seamless user experiences.
-                        </p>
-                    </div>
-                    
-                    <div class="glass p-8 rounded-2xl border border-white/5 max-w-4xl mx-auto shadow-2xl transition-all duration-300 hover:border-accent/30">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-accent shrink-0 shadow-lg">
-                                    <i class="fas fa-calendar-alt text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg text-white font-semibold mb-1">Age & Birthday</h4>
-                                    <p class="text-light/70 text-sm leading-relaxed">
-                                        21 Years Old<br>
-                                        August 29, 2005
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-accent shrink-0 shadow-lg">
-                                    <i class="fas fa-user text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg text-white font-semibold mb-1">Civil Status</h4>
-                                    <p class="text-light/70 text-sm leading-relaxed">
-                                        Single
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-accent shrink-0 shadow-lg">
-                                    <i class="fas fa-map-marker-alt text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg text-white font-semibold mb-1">Location</h4>
-                                    <p class="text-light/70 text-sm leading-relaxed">
-                                        Baguio City, Philippines<br>
-                                        (Raised in Bulacan)
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-accent shrink-0 shadow-lg">
-                                    <i class="fas fa-graduation-cap text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg text-white font-semibold mb-1">Education</h4>
-                                    <p class="text-light/70 text-sm leading-relaxed">
-                                        1st-Year BS Computer Science<br>
-                                        University of the Cordilleras
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-accent shrink-0 shadow-lg">
-                                    <i class="fas fa-gamepad text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg text-white font-semibold mb-1">Hobbies</h4>
-                                    <p class="text-light/70 text-sm leading-relaxed">
-                                        Running, Gaming, Music<br>
-                                        & Anime/Movies
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-accent shrink-0 shadow-lg">
-                                    <i class="fas fa-laptop-code text-xl"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg text-white font-semibold mb-1">Core Skills</h4>
-                                    <p class="text-light/70 text-sm leading-relaxed">
-                                        Back-end configuration, Python,<br>Flask, Django, Java
-                                    </p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="mt-10 flex justify-center">
-                        <a href="#achievements" class="px-8 py-4 border border-accent text-accent font-semibold rounded hover:bg-accent hover:text-dark transition-all duration-300 animate-glow flex items-center gap-2 group">
-                            View My Achievements <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- VIEW 3: Achievements Section -->
-        <section id="achievements" class="page-section absolute inset-0 w-full h-full overflow-y-auto opacity-0 invisible z-0 bg-darker/30">
-            <div class="min-h-full flex flex-col justify-center pt-28 pb-12">
-                <div class="max-w-5xl mx-auto px-6 lg:px-8 w-full">
-                    
-                    <div class="mb-12 md:text-center flex flex-col items-center">
-                        <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block mb-4">
-                            Athletic Achievements
-                            <div class="absolute -bottom-2 left-1/4 w-1/2 h-1 bg-accent rounded-full"></div>
-                        </h2>
-                        <p class="text-light/70 max-w-2xl mx-auto mt-6">A chronological history of my regional and national milestones in Track and Field.</p>
-                    </div>
-
-                    <!-- Timeline -->
-                    <div class="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-accent/30 before:to-transparent">
-                        
-                        <!-- 2017 -->
-                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-darker bg-accent text-darker shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                                <i class="fas fa-medal text-sm"></i>
-                            </div>
-                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-2xl border border-white/5 transition-all duration-300 hover:border-accent/50 hover:-translate-y-1">
-                                <div class="flex items-center justify-between mb-2">
-                                    <h3 class="font-bold text-white text-lg">Grade 6 (Elementary Level)</h3>
-                                    <span class="text-accent font-semibold text-sm">2017</span>
-                                </div>
-                                <p class="text-light/70 text-sm leading-relaxed">Track and Field Multi-Gold Medalist, Regional to National Level</p>
-                            </div>
-                        </div>
-
-                        <!-- 2018 - 2022 -->
-                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-darker bg-accent text-darker shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                                <i class="fas fa-running text-sm"></i>
-                            </div>
-                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-2xl border border-white/5 transition-all duration-300 hover:border-accent/50 hover:-translate-y-1">
-                                <div class="flex items-center justify-between mb-2">
-                                    <h3 class="font-bold text-white text-lg">Grade 7 to 10 (High School Level)</h3>
-                                    <span class="text-accent font-semibold text-sm">2018 - 2022</span>
-                                </div>
-                                <p class="text-light/70 text-sm leading-relaxed">Track and Field Multi-Gold Medalist, Regional Level (Stopped because of COVID)</p>
-                            </div>
-                        </div>
-
-                        <!-- 2022 - 2024 -->
-                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                            <div class="flex items-center justify-center w-10 h-10 rounded-full border-4 border-darker bg-accent text-darker shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                                <i class="fas fa-stopwatch text-sm"></i>
-                            </div>
-                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] glass p-6 rounded-2xl border border-white/5 transition-all duration-300 hover:border-accent/50 hover:-translate-y-1">
-                                <div class="flex items-center justify-between mb-2">
-                                    <h3 class="font-bold text-white text-lg">Grade 11 to 12 (Senior High School Level)</h3>
-                                    <span class="text-accent font-semibold text-sm">2022 - 2024</span>
-                                </div>
-                                <p class="text-light/70 text-sm leading-relaxed">Co-Trainer/Coach for Elementary to High School Level Athletes, and Competed in Batang Pinoy and Regional to National Level Games</p>
-                            </div>
-                        </div>
-
-                    </div>
-                    
-                    <!-- Reference Note -->
-                    <div class="mt-10 text-center bg-accent/5 border border-accent/20 rounded-xl p-4 max-w-3xl mx-auto shadow-inner transition-all hover:border-accent/40 hover:bg-accent/10">
-                        <p class="text-xs md:text-sm text-light/80 italic flex items-center justify-center gap-2">
-                            <i class="fas fa-info-circle text-accent"></i>
-                            Records can be found in the official Sports Committee Commission uploaded documents for Athlete Standing.
-                        </p>
-                    </div>
-
-                    <!-- Photo Gallery Grid (Updated with object-contain for full visibility) -->
-                    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                        <div class="glass p-3 rounded-2xl border border-white/5 hover:border-accent/50 transition-all duration-300 group overflow-hidden shadow-lg bg-darker/60 flex items-center justify-center">
-                            <img src="Ref2.jpg" alt="Track and Field Event" class="w-full h-96 object-contain rounded-xl group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="glass p-3 rounded-2xl border border-white/5 hover:border-accent/50 transition-all duration-300 group overflow-hidden shadow-lg bg-darker/60 flex items-center justify-center">
-                            <img src="Ref1.jpg" alt="Palarong Pambansa 2018" class="w-full h-96 object-contain rounded-xl group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                        <div class="glass p-3 rounded-2xl border border-white/5 hover:border-accent/50 transition-all duration-300 group overflow-hidden shadow-lg bg-darker/60 flex items-center justify-center">
-                            <img src="Ref3.jpg" alt="Athlete with Coach and Medal" class="w-full h-96 object-contain rounded-xl group-hover:scale-105 transition-transform duration-500">
-                        </div>
-                    </div>
-
-                    <!-- ============ ACADEMIC MILESTONES ============ -->
-                    <div class="mt-14 pt-10 border-t border-white/10">
-                        <div class="mb-8 flex flex-col items-center text-center">
-                            <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block mb-4">
-                                Academic Milestones
-                                <div class="absolute -bottom-2 left-1/4 w-1/2 h-1 bg-accent rounded-full"></div>
-                            </h2>
-                            <p class="text-light/70 max-w-2xl mx-auto mt-6">Graduation portraits and diplomas, one education level at a time. Click any image to view it larger.</p>
-                        </div>
-
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:-mx-10">
-
-                            <!-- LEVEL 01 -->
-                            <article class="relative overflow-hidden flex flex-col rounded-2xl border border-amber-400/30 bg-gradient-to-b from-amber-400/10 via-darker/60 to-darker/80 p-5 shadow-[0_0_30px_rgba(251,191,36,0.08)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.15] hover:z-20 hover:border-amber-400/60 hover:shadow-[0_0_40px_rgba(251,191,36,0.2)]">
-                                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 to-amber-400/0"></div>
-                                <span class="pointer-events-none select-none absolute -top-1 right-3 text-7xl leading-none font-black text-amber-400/5">01</span>
-
-                                <span class="relative self-start inline-flex items-center gap-2 px-3 py-1 mt-1 mb-4 rounded-full bg-amber-400/15 border border-amber-400/40 text-amber-300 text-[11px] font-semibold tracking-widest uppercase">
-                                    <i class="fas fa-book-open"></i> Level 1 &middot; Elementary
-                                </span>
-
-                                <div class="relative flex gap-4 items-start mb-4">
-                                    <figure data-lightbox class="w-24 shrink-0 group cursor-zoom-in rounded-xl border border-amber-400/20 bg-darker/70 p-1.5 hover:border-amber-400/60 transition-all duration-300">
-                                        <div class="overflow-hidden rounded-lg">
-                                            <img src="elementary-portrait.jpg" alt="Elementary graduation portrait" loading="lazy" class="w-full h-auto max-h-44 object-contain group-hover:scale-105 transition-transform duration-500">
-                                        </div>
-                                    </figure>
-                                    <div class="min-w-0">
-                                        <p class="text-amber-300 text-xs font-semibold mb-1">Class of 2018</p>
-                                        <h3 class="text-base font-bold text-white leading-snug mb-1">Cornelia M. De Jesus Memorial School</h3>
-                                        <p class="text-light/60 text-xs leading-relaxed">Elementary Curriculum Diploma</p>
-                                    </div>
-                                </div>
-
-                                <figure data-lightbox class="relative mt-auto group cursor-zoom-in rounded-xl border border-amber-400/20 bg-darker/70 p-2 hover:border-amber-400/60 transition-all duration-300">
-                                    <div class="overflow-hidden rounded-lg">
-                                        <img src="elementary-diploma.jpg" alt="Elementary diploma, Cornelia M. De Jesus Memorial School, Class of 2018" loading="lazy" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500">
-                                    </div>
-                                    <figcaption class="mt-2 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest text-amber-300/80">
-                                        <i class="fas fa-scroll"></i> Elementary Diploma
-                                    </figcaption>
-                                </figure>
-                            </article>
-                            <!-- LEVEL 02 -->
-                            <article class="relative overflow-hidden flex flex-col rounded-2xl border border-rose-400/30 bg-gradient-to-b from-rose-400/10 via-darker/60 to-darker/80 p-5 shadow-[0_0_30px_rgba(251,113,133,0.08)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.15] hover:z-20 hover:border-rose-400/60 hover:shadow-[0_0_40px_rgba(251,113,133,0.2)]">
-                                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-rose-400 to-rose-400/0"></div>
-                                <span class="pointer-events-none select-none absolute -top-1 right-3 text-7xl leading-none font-black text-rose-400/5">02</span>
-
-                                <span class="relative self-start inline-flex items-center gap-2 px-3 py-1 mt-1 mb-4 rounded-full bg-rose-400/15 border border-rose-400/40 text-rose-300 text-[11px] font-semibold tracking-widest uppercase">
-                                    <i class="fas fa-school"></i> Level 2 &middot; Junior High
-                                </span>
-
-                                <div class="relative flex gap-4 items-start mb-4">
-                                    <figure data-lightbox class="w-24 shrink-0 group cursor-zoom-in rounded-xl border border-rose-400/20 bg-darker/70 p-1.5 hover:border-rose-400/60 transition-all duration-300">
-                                        <div class="overflow-hidden rounded-lg">
-                                            <img src="junior-high-portrait.jpg" alt="Junior high school graduation portrait" loading="lazy" class="w-full h-auto max-h-44 object-contain group-hover:scale-105 transition-transform duration-500">
-                                        </div>
-                                    </figure>
-                                    <div class="min-w-0">
-                                        <p class="text-rose-300 text-xs font-semibold mb-1">Class of 2022</p>
-                                        <h3 class="text-base font-bold text-white leading-snug mb-1">Pulong Buhangin National High School</h3>
-                                        <p class="text-light/60 text-xs leading-relaxed">High School Diploma &middot; Secondary Education Curriculum</p>
-                                    </div>
-                                </div>
-
-                                <figure data-lightbox class="relative mt-auto group cursor-zoom-in rounded-xl border border-rose-400/20 bg-darker/70 p-2 hover:border-rose-400/60 transition-all duration-300">
-                                    <div class="overflow-hidden rounded-lg">
-                                        <img src="junior-high-diploma.jpg" alt="High school diploma, Pulong Buhangin National High School, Class of 2022" loading="lazy" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500">
-                                    </div>
-                                    <figcaption class="mt-2 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest text-rose-300/80">
-                                        <i class="fas fa-scroll"></i> High School Diploma
-                                    </figcaption>
-                                </figure>
-                            </article>
-                            <!-- LEVEL 03 -->
-                            <article class="relative overflow-hidden flex flex-col rounded-2xl border border-sky-400/30 bg-gradient-to-b from-sky-400/10 via-darker/60 to-darker/80 p-5 shadow-[0_0_30px_rgba(56,189,248,0.08)] transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.15] hover:z-20 hover:border-sky-400/60 hover:shadow-[0_0_40px_rgba(56,189,248,0.2)]">
-                                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-sky-400 to-sky-400/0"></div>
-                                <span class="pointer-events-none select-none absolute -top-1 right-3 text-7xl leading-none font-black text-sky-400/5">03</span>
-
-                                <span class="relative self-start inline-flex items-center gap-2 px-3 py-1 mt-1 mb-4 rounded-full bg-sky-400/15 border border-sky-400/40 text-sky-300 text-[11px] font-semibold tracking-widest uppercase">
-                                    <i class="fas fa-graduation-cap"></i> Level 3 &middot; Senior High
-                                </span>
-
-                                <div class="relative flex gap-4 items-start mb-4">
-                                    <figure data-lightbox class="w-24 shrink-0 group cursor-zoom-in rounded-xl border border-sky-400/20 bg-darker/70 p-1.5 hover:border-sky-400/60 transition-all duration-300">
-                                        <div class="overflow-hidden rounded-lg">
-                                            <img src="senior-high-portrait.jpg" alt="Senior high school graduation portrait" loading="lazy" class="w-full h-auto max-h-44 object-contain group-hover:scale-105 transition-transform duration-500">
-                                        </div>
-                                    </figure>
-                                    <div class="min-w-0">
-                                        <p class="text-sky-300 text-xs font-semibold mb-1">Graduated May 27, 2024</p>
-                                        <h3 class="text-base font-bold text-white leading-snug mb-1">Immaculate Conception Polytechnic</h3>
-                                        <p class="text-light/60 text-xs leading-relaxed">Academic Track &middot; ABM Strand &middot; Sta. Maria, Bulacan</p>
-                                    </div>
-                                </div>
-
-                                <figure data-lightbox class="relative mt-auto group cursor-zoom-in rounded-xl border border-sky-400/20 bg-darker/70 p-2 hover:border-sky-400/60 transition-all duration-300">
-                                    <div class="overflow-hidden rounded-lg">
-                                        <img src="senior-high-diploma.jpg" alt="Senior High School diploma, Immaculate Conception Polytechnic, ABM Strand" loading="lazy" class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-500">
-                                    </div>
-                                    <figcaption class="mt-2 flex items-center justify-center gap-2 text-[10px] uppercase tracking-widest text-sky-300/80">
-                                        <i class="fas fa-scroll"></i> Senior High School Diploma
-                                    </figcaption>
-                                </figure>
-                            </article>
-
-                        </div>
-                    </div>
-                    <!-- ============ END ACADEMIC MILESTONES ============ -->
-
-                    <div class="mt-12 flex justify-center">
-                        <a href="#skills" class="px-8 py-4 border border-accent text-accent font-semibold rounded hover:bg-accent hover:text-dark transition-all duration-300 animate-glow flex items-center gap-2 group">
-                            View My Skills <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- VIEW 4: Skills Section -->
-        <section id="skills" class="page-section absolute inset-0 w-full h-full overflow-y-auto opacity-0 invisible z-0 bg-darker/30">
-            <div class="min-h-full flex flex-col justify-center pt-28 pb-12">
-                <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-                    <div class="mb-12 md:text-center flex flex-col items-center">
-                        <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block mb-4">
-                            Core Focus & Capabilities
-                            <div class="absolute -bottom-2 left-1/4 w-1/2 h-1 bg-accent rounded-full"></div>
-                        </h2>
-                        <p class="text-light/70 max-w-2xl mx-auto mt-6 text-center">Specialized in building and maintaining the invisible engines that power modern applications.</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <div class="glass p-6 rounded-2xl border border-white/5 hover:border-accent/50 transition-all duration-300 hover:-translate-y-2 group">
-                            <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/10 transition-colors">
-                                <i class="fas fa-server text-xl text-accent"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-white mb-2">Backend Development</h3>
-                            <p class="text-light/70 text-sm leading-relaxed">Crafting robust, scalable server-side logic and core application functionality.</p>
-                        </div>
-                        <div class="glass p-6 rounded-2xl border border-white/5 hover:border-accent/50 transition-all duration-300 hover:-translate-y-2 group delay-100">
-                            <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/10 transition-colors">
-                                <i class="fas fa-cogs text-xl text-accent"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-white mb-2">System Configuration</h3>
-                            <p class="text-light/70 text-sm leading-relaxed">Optimizing background processes and ensuring seamless server environments.</p>
-                        </div>
-                        <div class="glass p-6 rounded-2xl border border-white/5 hover:border-accent/50 transition-all duration-300 hover:-translate-y-2 group delay-200">
-                            <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/10 transition-colors">
-                                <i class="fas fa-network-wired text-xl text-accent"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-white mb-2">API Architecture</h3>
-                            <p class="text-light/70 text-sm leading-relaxed">Designing RESTful APIs for secure and efficient client-server communication.</p>
-                        </div>
-                        <div class="glass p-6 rounded-2xl border border-white/5 hover:border-accent/50 transition-all duration-300 hover:-translate-y-2 group delay-300">
-                            <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/10 transition-colors">
-                                <i class="fas fa-database text-xl text-accent"></i>
-                            </div>
-                            <h3 class="text-lg font-bold text-white mb-2">Database Ops</h3>
-                            <p class="text-light/70 text-sm leading-relaxed">Managing data integrity, query optimization, and structural database schemas.</p>
-                        </div>
-                    </div>
-
-                    <div class="mt-12 flex justify-center">
-                        <a href="#contact" class="px-8 py-4 border border-accent text-accent font-semibold rounded hover:bg-accent hover:text-dark transition-all duration-300 animate-glow flex items-center gap-2 group">
-                            Get In Touch <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- VIEW 5: Contact & Footer Section -->
-        <section id="contact" class="page-section absolute inset-0 w-full h-full overflow-y-auto opacity-0 invisible z-0 bg-darker/50 flex flex-col">
-            
-            <div class="flex-grow flex flex-col justify-center pt-28 pb-12">
-                <div class="max-w-3xl w-full mx-auto px-6 lg:px-8">
-                    <div class="mb-10 text-center flex flex-col items-center">
-                        <h2 class="text-3xl md:text-4xl font-bold text-white relative inline-block mb-4">
-                            Send a Message
-                            <div class="absolute -bottom-2 left-1/4 w-1/2 h-1 bg-accent rounded-full"></div>
-                        </h2>
-                        <p class="text-light/70 max-w-lg">Have a question regarding backend configurations or want to collaborate?</p>
-                    </div>
-                    
-                    <form class="space-y-5 bg-dark/60 p-6 md:p-8 rounded-2xl border border-white/5 glass shadow-2xl transition-all duration-300 hover:border-white/10">
-                        <div>
-                            <label for="sender-email" class="block text-sm font-medium text-light mb-2">Email Address</label>
-                            <input type="email" id="sender-email" name="sender-email" required
-                                   class="w-full px-4 py-3 bg-darker/80 border border-white/10 rounded-lg text-white focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300 placeholder-light/30"
-                                   placeholder="Your email address">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-light mb-2">Message</label>
-                            <textarea id="message" name="message" rows="4" required
-                                      class="w-full px-4 py-3 bg-darker/80 border border-white/10 rounded-lg text-white focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-all duration-300 placeholder-light/30 resize-none"
-                                      placeholder="Your message here..."></textarea>
-                        </div>
-                        <div class="pt-2">
-                            <button type="submit"
-                                    class="w-full py-3 bg-transparent border border-accent text-accent font-semibold rounded-lg hover:bg-accent hover:text-dark transition-all duration-300 shadow-[0_0_10px_rgba(102,252,241,0.1)] hover:shadow-[0_0_20px_rgba(102,252,241,0.4)] flex justify-center items-center gap-2 group">
-                                <span>Send Message</span>
-                                <i class="fas fa-paper-plane group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"></i>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Embedded Footer -->
-            <footer class="w-full py-8 border-t border-white/5 bg-darker text-center flex-shrink-0">
-                <div class="max-w-7xl mx-auto px-6 lg:px-8">
-                    <h3 class="text-xl font-bold text-white mb-4">Let's Connect</h3>
-                    
-                    <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-6">
-                        <a href="mailto:allandreib@gmail.com" class="group flex items-center gap-3 px-5 py-2 bg-dark border border-white/5 rounded-full hover:border-accent/50 transition-all duration-300 shadow-md">
-                            <i class="fas fa-envelope text-accent group-hover:animate-pulse"></i> 
-                            <span class="text-light/80 text-sm group-hover:text-white transition-colors">allandreib@gmail.com</span>
-                        </a>
-                        <a href="tel:+639951326966" class="group flex items-center gap-3 px-5 py-2 bg-dark border border-white/5 rounded-full hover:border-accent/50 transition-all duration-300 shadow-md">
-                            <i class="fas fa-phone text-accent group-hover:animate-pulse"></i> 
-                            <span class="text-light/80 text-sm group-hover:text-white transition-colors">+63 995 132 6966</span>
-                        </a>
-                    </div>
-                    
-                    <div class="flex justify-center space-x-6 mb-4">
-                        <a href="#" title="Instagram" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-light hover:bg-accent hover:text-dark hover:shadow-[0_0_15px_rgba(102,252,241,0.8)] transition-all duration-300">
-                            <i class="fab fa-instagram text-lg"></i>
-                        </a>
-                        <a href="#" title="Facebook" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-light hover:bg-accent hover:text-dark hover:shadow-[0_0_15px_rgba(102,252,241,0.8)] transition-all duration-300">
-                            <i class="fab fa-facebook-f text-lg"></i>
-                        </a>
-                        <a href="#" title="GitHub" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-light hover:bg-accent hover:text-dark hover:shadow-[0_0_15px_rgba(102,252,241,0.8)] transition-all duration-300">
-                            <i class="fab fa-github text-lg"></i>
-                        </a>
-                    </div>
-                    <p class="text-xs text-light/40">
-                        &copy; <script>document.write(new Date().getFullYear())</script> Allandrei Escoto Baniaga. Single Page Application.
-                    </p>
-                </div>
-            </footer>
-        </section>
-
-    </main>
-
-    <!-- Image Lightbox -->
-    <div id="lightbox" class="fixed inset-0 z-[10000] hidden items-center justify-center bg-black/90 p-4 cursor-zoom-out" role="dialog" aria-modal="true" aria-label="Image viewer">
-        <button id="lightbox-close" type="button" aria-label="Close image viewer"
-                class="absolute top-5 right-5 w-11 h-11 rounded-full bg-white/10 text-white hover:bg-accent hover:text-dark transition-colors flex items-center justify-center">
-            <i class="fas fa-times"></i>
-        </button>
-        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl">
+    <div class="col">
+      <div class="hd"><h2>Academic Milestones</h2><p>Graduation portraits and diplomas, one education level at a time. Click any image to view it larger.</p></div>
+      <div class="lvs">
+        <article class="c lv" style="--k:#fbbf24">
+          <figure class="fig" data-lightbox><img src="elementary-portrait.jpg" alt="Elementary graduation portrait" loading="lazy"></figure>
+          <div class="tx"><span class="bd"><i class="fas fa-book-open"></i> Level 1 · Elementary</span><span class="yr">Class of 2018</span><h3>Cornelia M. De Jesus Memorial School</h3><p>Elementary Curriculum Diploma</p></div>
+          <figure class="fig w" data-lightbox><img src="elementary-diploma.jpg" alt="Elementary diploma, Cornelia M. De Jesus Memorial School, Class of 2018" loading="lazy"></figure>
+        </article>
+        <article class="c lv" style="--k:#fb7185">
+          <figure class="fig" data-lightbox><img src="junior-high-portrait.jpg" alt="Junior high school graduation portrait" loading="lazy"></figure>
+          <div class="tx"><span class="bd"><i class="fas fa-school"></i> Level 2 · Junior High</span><span class="yr">Class of 2022</span><h3>Pulong Buhangin National High School</h3><p>High School Diploma · Secondary Education Curriculum</p></div>
+          <figure class="fig w" data-lightbox><img src="junior-high-diploma.jpg" alt="High school diploma, Pulong Buhangin National High School, Class of 2022" loading="lazy"></figure>
+        </article>
+        <article class="c lv" style="--k:#38bdf8">
+          <figure class="fig" data-lightbox><img src="senior-high-portrait.jpg" alt="Senior high school graduation portrait" loading="lazy"></figure>
+          <div class="tx"><span class="bd"><i class="fas fa-graduation-cap"></i> Level 3 · Senior High</span><span class="yr">Graduated May 27, 2024</span><h3>Immaculate Conception Polytechnic</h3><p>Academic Track · ABM Strand · Sta. Maria, Bulacan</p></div>
+          <figure class="fig w" data-lightbox><img src="senior-high-diploma.jpg" alt="Senior High School diploma, Immaculate Conception Polytechnic, ABM Strand" loading="lazy"></figure>
+        </article>
+      </div>
     </div>
+  </div>
+  <a href="#family" class="cta">Meet My Family &amp; Friends <i class="fas fa-arrow-right"></i></a>
+</div></section>
 
-    <!-- SPA Logic Script -->
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const sections = document.querySelectorAll(".page-section");
-            const navLinks = document.querySelectorAll(".nav-link");
+<!-- FAMILY -->
+<section id="family" class="page"><div class="wrap">
+  <div class="hd"><h2>Family &amp; Friends</h2><p>The people who stand behind my journey, keep me grounded, and make every milestone worthwhile.</p></div>
+  <div class="fam">
+    <article class="c fc">
+      <figure class="fig cv" style="--bg:url('mom hug.jpg')" data-lightbox><img src="mom hug.jpg" alt="Allandrei hugging his mom Nazi Irene Baniaga" loading="lazy"></figure>
+      <div class="fb"><span class="chip"><i class="fas fa-shield-alt"></i> My mom, My protector</span><div class="r"><h3>Nazi Irene Baniaga</h3><span class="pl">44 years old</span></div><p>Has always had my back no matter the journey.</p></div>
+    </article>
+    <article class="c fc">
+      <figure class="fig cv" style="--bg:url('dad shakehands.jpg')" data-lightbox><img src="dad shakehands.jpg" alt="Allandrei shaking hands with his dad Michael Baniaga" loading="lazy"></figure>
+      <div class="fb"><span class="chip"><i class="fas fa-hands-helping"></i> My dad, My backup</span><div class="r"><h3>Michael Baniaga</h3><span class="pl">40 years old</span></div><p>No matter what the circumstance, he will always be there for me.</p></div>
+    </article>
+    <article class="c fc">
+      <figure class="fig cv" style="--bg:url('siblings.jpg')" data-lightbox><img src="siblings.jpg" alt="Allandrei with his siblings Summer, Rhain, Eina, and Memel" loading="lazy"></figure>
+      <div class="fb"><span class="chip"><i class="fas fa-users"></i> My lovely blood enemies</span><h3>Summer, Rhain, Eina &amp; Memel</h3>
+        <div class="tags"><span class="pl">Summer · 18 yrs old</span><span class="pl">Rhain · 19 yrs old</span><span class="pl">Eina · 8 yrs old</span><span class="pl">Memel · 4 yrs old</span></div>
+        <p>My siblings whom I share my blood with, who yet make my blood boil, but I love them as deep as I love my family.</p></div>
+    </article>
+    <article class="c fc">
+      <figure class="fig cv" style="--bg:url('Friends.jpg')" data-lightbox><img src="Friends.jpg" alt="Allandrei with his track and field teammates and friends" loading="lazy"></figure>
+      <div class="fb"><span class="chip"><i class="fas fa-user-friends"></i> Chosen Family</span><h3>The family I’ve always loved despite not being blood related.</h3><p>I won’t be who I am without them.</p></div>
+    </article>
+  </div>
+  <a href="#contact" class="cta">Get In Touch <i class="fas fa-arrow-right"></i></a>
+</div></section>
 
-            function showSection(hash) {
-                if (!hash || !document.querySelector(hash)) {
-                    hash = "#home";
-                }
+<!-- CONTACT -->
+<section id="contact" class="page"><div class="wrap" style="max-width:1000px">
+  <div class="hd"><h2>Send a Message</h2><p>Have a question regarding backend configurations or want to collaborate?</p></div>
+  <div class="ct">
+    <form class="c" id="msg-form">
+      <div class="fld"><label for="sender-email">Email Address</label><input type="email" id="sender-email" name="sender-email" required placeholder="Your email address"></div>
+      <div class="fld g"><label for="message">Message</label><textarea id="message" name="message" required placeholder="Your message here..."></textarea></div>
+      <button type="submit" class="send"><span>Send Message</span><i class="fas fa-paper-plane"></i></button>
+    </form>
+    <div class="c conn">
+      <h3>Let’s Connect</h3>
+      <a href="mailto:allandreib@gmail.com" class="pill"><i class="fas fa-envelope"></i><span>allandreib@gmail.com</span></a>
+      <a href="tel:+639951326966" class="pill"><i class="fas fa-phone"></i><span>+63 995 132 6966</span></a>
+      <div class="soc">
+        <a href="#" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      </div>
+      <small>&copy; <script>document.write(new Date().getFullYear())</script> Allandrei Escoto Baniaga. Single Page Application.</small>
+    </div>
+  </div>
+</div></section>
 
-                sections.forEach(sec => {
-                    sec.classList.remove("opacity-100", "invisible", "z-10");
-                    sec.classList.add("opacity-0", "invisible", "z-0");
-                });
+<!-- Image Lightbox -->
+<div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button type="button" aria-label="Close image viewer"><i class="fas fa-times"></i></button>
+  <img id="lb-img" src="" alt="">
+</div>
 
-                const target = document.querySelector(hash);
-                if (target) {
-                    target.classList.remove("opacity-0", "invisible", "z-0");
-                    target.classList.add("opacity-100", "z-10");
-                    setTimeout(() => target.classList.remove("invisible"), 10);
-                }
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const pages = [...document.querySelectorAll(".page")];
+  const links = [...document.querySelectorAll(".nav-link")];
+  const order = pages.map(p => "#" + p.id);
+  let current = "#home";
 
-                navLinks.forEach(link => {
-                    if (link.getAttribute("href") === hash) {
-                        link.classList.add("text-accent");
-                        link.classList.remove("text-light");
-                    } else {
-                        link.classList.remove("text-accent");
-                        link.classList.add("text-light");
-                    }
-                });
-            }
+  function show(h) {
+    if (!order.includes(h)) h = "#home";
+    current = h;
+    pages.forEach(p => { const on = "#" + p.id === h; p.classList.toggle("on", on); if (on) p.scrollTop = 0; });
+    links.forEach(l => {
+      const on = l.getAttribute("href") === h;
+      l.classList.toggle("on", on);
+      on ? l.setAttribute("aria-current", "page") : l.removeAttribute("aria-current");
+    });
+  }
 
-            window.addEventListener("hashchange", () => {
-                showSection(window.location.hash);
-            });
+  document.addEventListener("click", e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    e.preventDefault();
+    const h = a.getAttribute("href");
+    if (h.length > 1) { history.pushState(null, "", h); show(h); }
+  });
+  window.addEventListener("popstate", () => show(location.hash));
+  show(location.hash);
 
-            showSection(window.location.hash);
+  // Arrow keys move between pages
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") closeLB();
+    if (!["ArrowLeft", "ArrowRight"].includes(e.key) || /INPUT|TEXTAREA/.test(e.target.tagName) || lb.classList.contains("open")) return;
+    const i = order.indexOf(current) + (e.key === "ArrowRight" ? 1 : -1);
+    if (order[i]) { history.pushState(null, "", order[i]); show(order[i]); }
+  });
 
-            // Cursor Glow Logic
-            const cursorGlow = document.getElementById('cursor-glow');
-            document.addEventListener('mousemove', (e) => {
-                requestAnimationFrame(() => {
-                    cursorGlow.style.transform = `translate(${e.clientX - 48}px, ${e.clientY - 48}px)`;
-                });
-            });
-            
-            document.addEventListener('mouseleave', () => {
-                cursorGlow.style.opacity = '0';
-            });
-            
-            document.addEventListener('mouseenter', () => {
-                cursorGlow.style.opacity = '0.2';
-            });
+  // Cursor glow
+  const glow = document.getElementById("glow");
+  document.addEventListener("mousemove", e => { glow.style.transform = `translate(${e.clientX - 48}px,${e.clientY - 48}px)`; });
+  document.addEventListener("mouseleave", () => glow.style.opacity = "0");
+  document.addEventListener("mouseenter", () => glow.style.opacity = ".16");
 
-            // Lightbox Logic (click an image in Academic Milestones to enlarge)
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-img');
+  // Lightbox
+  const lb = document.getElementById("lb"), lbImg = document.getElementById("lb-img");
+  function closeLB() { lb.classList.remove("open"); lbImg.src = ""; }
+  document.addEventListener("click", e => {
+    const fig = e.target.closest("[data-lightbox]");
+    if (fig) {
+      const img = fig.querySelector("img");
+      if (img) { lbImg.src = img.src; lbImg.alt = img.alt || ""; lb.classList.add("open"); }
+      return;
+    }
+    if (lb.classList.contains("open")) closeLB();
+  });
 
-            function openLightbox(src, alt) {
-                lightboxImg.src = src;
-                lightboxImg.alt = alt || '';
-                lightbox.classList.remove('hidden');
-                lightbox.classList.add('flex');
-            }
-            function closeLightbox() {
-                lightbox.classList.add('hidden');
-                lightbox.classList.remove('flex');
-                lightboxImg.src = '';
-            }
-
-            document.addEventListener('click', (e) => {
-                const fig = e.target.closest('[data-lightbox]');
-                if (fig) {
-                    const img = fig.querySelector('img');
-                    if (img) openLightbox(img.src, img.alt);
-                    return;
-                }
-                if (!lightbox.classList.contains('hidden')) closeLightbox();
-            });
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeLightbox();
-            });
-        });
-    </script>
+  // Contact form: opens the visitor's mail app instead of reloading the page
+  document.getElementById("msg-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const f = e.target;
+    const body = encodeURIComponent(f.message.value + "\n\nFrom: " + f["sender-email"].value);
+    location.href = "mailto:allandreib@gmail.com?subject=" + encodeURIComponent("Portfolio message") + "&body=" + body;
+  });
+});
+</script>
 </body>
 </html>
