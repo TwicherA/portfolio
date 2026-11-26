@@ -23,7 +23,7 @@ img{display:block}
 
 /* Header */
 header{position:fixed;inset:0 0 auto;height:64px;z-index:50;background:rgba(11,12,16,.72);backdrop-filter:blur(12px);border-bottom:1px solid rgba(69,162,158,.2)}
-.bar{max-width:1280px;margin:auto;height:100%;padding:0 28px;display:flex;align-items:center;justify-content:space-between}
+.bar{max-width:none;margin:auto;height:100%;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:22px;font-weight:700;color:#fff;letter-spacing:-.04em}.logo span{color:var(--acc)}
 nav,.mnav{display:flex;gap:4px}.mnav{display:none}
 .nav-link{position:relative;padding:8px 14px;font-size:13.5px;font-weight:500;color:var(--tx);transition:color .2s}
@@ -31,9 +31,9 @@ nav,.mnav{display:flex;gap:4px}.mnav{display:none}
 .nav-link.on{color:var(--acc)}.nav-link.on::after{transform:scaleX(1)}
 
 /* Pages: each one fills the viewport exactly */
-.page{position:absolute;inset:0;padding:84px 28px 72px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
+.page{position:absolute;inset:0;padding:80px 20px 68px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
 .page.on{opacity:1;visibility:visible;z-index:2}
-.wrap{max-width:1280px;margin:auto;height:100%;min-height:520px;display:flex;flex-direction:column}
+.wrap{max-width:none;margin:auto;height:100%;min-height:520px;display:flex;flex-direction:column}
 .hd{margin-bottom:14px}
 h2{font-size:clamp(22px,2.6vw,30px);font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.15}
 h2::after{content:"";display:block;width:44px;height:3px;border-radius:3px;background:var(--acc);margin-top:6px}
@@ -51,28 +51,23 @@ h2::after{content:"";display:block;width:44px;height:3px;border-radius:3px;backg
 .cta.inl{position:static;transform:none}
 
 /* Home */
-.hero{height:100%;max-width:820px;margin:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.hero img{height:clamp(190px,38vh,420px);width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 0 20px rgba(102,252,241,.35));transition:filter .5s,transform .5s;margin-bottom:18px}
-.hero img:hover{filter:drop-shadow(0 0 38px rgba(102,252,241,.8));transform:scale(1.03)}
-.hero .hi{color:var(--acc);font-weight:500;margin-bottom:6px}
-h1{font-size:clamp(28px,4.6vw,52px);font-weight:700;color:#fff;letter-spacing:-.03em;line-height:1.1;margin-bottom:10px}
-.hero h3{font-size:clamp(16px,2vw,22px);font-weight:600;color:rgba(197,198,199,.85);margin-bottom:14px}
-.hero p{max-width:640px;font-size:clamp(13px,1.3vw,15px);color:rgba(197,198,199,.72);line-height:1.65;margin-bottom:22px}
-.hero p b{color:var(--acc);font-weight:500}
-/* Desktop: photo gets its own column and uses nearly the full viewport height */
-@media(min-width:1024px){
-.hero{max-width:1200px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);grid-template-rows:1fr repeat(5,auto) 1fr;column-gap:56px;align-items:start;justify-items:start;text-align:left}
-.hero img{grid-column:1;grid-row:1/-1;align-self:center;justify-self:center;height:calc(100vh - 170px);min-height:440px;max-height:860px;width:auto;max-width:100%;margin:0}
-.hero>:not(img){grid-column:2}
-.hero>:nth-child(2){grid-row:2}.hero>:nth-child(3){grid-row:3}.hero>:nth-child(4){grid-row:4}.hero>:nth-child(5){grid-row:5}.hero>:nth-child(6){grid-row:6}
-.hero h1{font-size:clamp(28px,3.4vw,46px)}
-}
+.hero{height:100%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:stretch}
+.hx{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left}
+.hx .hi{color:var(--acc);font-weight:500;font-size:clamp(14px,1.3vw,17px);margin-bottom:8px}
+h1{font-size:clamp(34px,5vw,68px);font-weight:700;color:#fff;letter-spacing:-.035em;line-height:1.05;margin-bottom:16px}
+.hx h3{font-size:clamp(17px,1.8vw,24px);font-weight:600;color:rgba(197,198,199,.9);line-height:1.35;margin-bottom:16px}
+.hx p.ds{max-width:560px;font-size:clamp(14px,1.2vw,16px);color:rgba(197,198,199,.72);line-height:1.7;margin-bottom:26px}
+.hx p.ds b{color:var(--acc);font-weight:500}
+.hp{position:relative;min-height:0}
+.hp::before{content:"";position:absolute;inset:6% 2% 0;border-radius:50% 50% 0 0;background:radial-gradient(closest-side,rgba(102,252,241,.2),transparent 78%)}
+.hp img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 0 22px rgba(102,252,241,.35));transition:filter .5s,transform .5s}
+.hp img:hover{filter:drop-shadow(0 0 40px rgba(102,252,241,.75));transform:scale(1.02)}
 @keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 .page.on .rise{animation:up .7s ease-out both;animation-delay:var(--d,0s)}
 
 /* Personal info */
-.pi{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2.1fr);gap:16px;flex:1;min-height:0}
-.lc,.rc{display:flex;flex-direction:column;gap:10px;min-height:0}.rc{gap:8px}
+.pi{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,2.25fr);gap:22px;flex:1;min-height:0}
+.lc,.rc{display:flex;flex-direction:column;gap:12px;min-height:0}
 .pt{flex:1;min-height:0;padding:10px;display:flex;flex-direction:column;position:relative;overflow:hidden;border-color:rgba(102,252,241,.3)}
 .pt::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,var(--acc),transparent)}
 .pt .fig{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(5,6,8,.9));margin-top:4px}
@@ -88,12 +83,28 @@ h1{font-size:clamp(28px,4.6vw,52px);font-weight:700;color:#fff;letter-spacing:-.
 .act a:hover i{background:var(--acc);color:var(--bg)}
 .act b{display:block;font-size:12.5px;color:var(--acc);font-weight:600}.act span{display:block;font-size:11.5px;color:rgba(197,198,199,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .nm{padding:10px 16px;background:linear-gradient(90deg,rgba(102,252,241,.13),rgba(5,6,8,.6));border-color:rgba(102,252,241,.3)}
-.nm small,.f small{display:block;font-size:11px;font-weight:600;color:var(--acc2)}
+.f small{display:block;font-size:11.5px;margin-bottom:1px;font-weight:600;color:var(--acc2)}
 .nm h3{font-size:clamp(18px,2vw,24px);font-weight:700;color:#fff;letter-spacing:-.01em;line-height:1.2}
-.g6{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:1fr;gap:8px;flex:1;min-height:0}
-.f{padding:6px 12px;display:flex;flex-direction:column;justify-content:center}
-.f b{font-size:13px;font-weight:500;color:#fff;line-height:1.3}
-.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}
+.g8{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));grid-auto-rows:auto;align-content:stretch;gap:9px;flex:1;min-height:0}
+.f{padding:8px 15px;display:flex;flex-direction:column;justify-content:center}
+.f b{font-size:14.5px;font-weight:500;color:#fff;line-height:1.3}
+.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}.s5{grid-column:span 5}.hl{background:linear-gradient(90deg,rgba(102,252,241,.13),rgba(5,6,8,.6));border-color:rgba(102,252,241,.3)}.hl b{font-size:17px;font-weight:700}.hd.row{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 18px;margin-bottom:14px}.hd.row p{margin:0}
+
+
+/* Personal info groups (one-screen layout) */
+#personal-info{overflow:hidden}
+.grp{display:flex;flex-direction:column;gap:7px;min-width:0}
+.gh{display:flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--acc)}
+.gh i{width:24px;height:24px;display:grid;place-items:center;border-radius:8px;font-size:11px;background:rgba(102,252,241,.1);border:1px solid rgba(102,252,241,.3)}
+.gh::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,rgba(102,252,241,.35),transparent)}
+.gg{display:grid;grid-template-columns:repeat(var(--n,4),minmax(0,1fr));gap:7px;align-content:stretch;flex:1}
+.pi .f{padding:6px 12px}.pi .f small{font-size:10.5px}.pi .f b{font-size:13px;line-height:1.3}.pi .hl b{font-size:15px}
+.pi .rc{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px 18px}
+.g-bg{grid-column:span 6}.g-ph,.g-md{grid-column:span 3}.g-pa,.g-co,.g-em{grid-column:span 4}.g-sk{grid-column:span 12}
+.s6{grid-column:span 6}.s8{grid-column:span 8}
+.pi{grid-template-columns:250px minmax(0,1fr);gap:20px;align-items:stretch}
+.pi .lc{align-self:stretch}
+.act{grid-template-columns:1fr}
 
 /* Achievements */
 .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;flex:1;min-height:0}
@@ -137,26 +148,6 @@ h1{font-size:clamp(28px,4.6vw,52px);font-weight:700;color:#fff;letter-spacing:-.
 .fb .tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
 .fb p{font-size:13px;color:rgba(197,198,199,.75);line-height:1.5}
 
-/* Contact */
-.ct{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;flex:1;min-height:0}
-form.c{padding:22px;display:flex;flex-direction:column;gap:12px}
-.fld{display:flex;flex-direction:column;gap:6px}.fld.g{flex:1;min-height:0}
-label{font-size:13px;font-weight:500;color:var(--tx)}
-input,textarea{width:100%;padding:10px 14px;font:inherit;color:#fff;background:rgba(5,6,8,.8);border:1px solid var(--ln);border-radius:10px;outline:none;transition:border-color .25s,box-shadow .25s}
-input::placeholder,textarea::placeholder{color:rgba(197,198,199,.3)}
-input:focus,textarea:focus{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc)}
-textarea{flex:1;min-height:90px;resize:none}
-.send{padding:11px;font:inherit;font-weight:600;color:var(--acc);background:transparent;border:1px solid var(--acc);border-radius:10px;cursor:pointer;display:flex;gap:8px;align-items:center;justify-content:center;transition:.25s}
-.send:hover{background:var(--acc);color:var(--bg);box-shadow:0 0 20px rgba(102,252,241,.4)}
-.conn{padding:24px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:14px}
-.conn h3{font-size:22px;font-weight:700;color:#fff}
-.pill{display:flex;align-items:center;gap:12px;padding:9px 20px;border-radius:99px;background:var(--bg);border:1px solid var(--ln);font-size:13.5px;transition:border-color .25s,color .25s}
-.pill:hover{border-color:rgba(102,252,241,.5);color:#fff}.pill i{color:var(--acc)}
-.soc{display:flex;gap:14px}
-.soc a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.05);display:grid;place-items:center;font-size:17px;transition:.25s}
-.soc a:hover{background:var(--acc);color:var(--bg);box-shadow:0 0 15px rgba(102,252,241,.8)}
-.conn small{font-size:12px;color:rgba(197,198,199,.4)}
-
 /* Lightbox */
 #lb{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.92);padding:20px;cursor:zoom-out}
 #lb.open{display:flex}
@@ -170,15 +161,15 @@ textarea{flex:1;min-height:90px;resize:none}
 @media(max-width:1023px){
 nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding:0 16px}
 .page{padding:80px 16px 24px}.wrap{height:auto;min-height:0}
-.pi,.two,.fam,.ct,.lvs{display:flex;flex-direction:column}
-.g6{grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto;flex:none}
-.s2,.s3,.s4{grid-column:span 2}
+.pi,.two,.fam,.lvs{display:flex;flex-direction:column}
+.g8{grid-template-columns:repeat(2,minmax(0,1fr));flex:none}
+.s2,.s3,.s4,.s5,.s6,.s8{grid-column:span 2}.pi .rc{display:flex;flex-direction:column;gap:22px}.gg{grid-template-columns:repeat(2,minmax(0,1fr))}.g-bg,.g-ph,.g-md,.g-pa,.g-co,.g-em,.g-sk{grid-column:auto}
 .pt{flex:none}.pt .fig{flex:none;height:360px}
 .fc{flex:none}.fc .fig{flex:none;height:320px}
 .ph{flex:none;height:150px}.lv{flex:none}.lv .fig{min-height:110px}
-.col{margin-bottom:24px}textarea{min-height:120px;flex:none}form.c .fld.g{flex:none}
+.col{margin-bottom:24px}
 .cta,.cta.inl{position:static;transform:none;align-self:center;margin:22px 0 0}
-.hero{height:auto;padding-top:8px}
+.hero{display:flex;flex-direction:column-reverse;gap:16px;height:auto}.hp{height:340px;flex:none}.hx{align-items:center;text-align:center}
 }
 </style>
 </head>
@@ -194,14 +185,12 @@ nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding
       <a href="#personal-info" class="nav-link">Personal Info</a>
       <a href="#achievements" class="nav-link">Achievements</a>
       <a href="#family" class="nav-link">Family &amp; Friends</a>
-      <a href="#contact" class="nav-link">Contact</a>
     </nav>
     <div class="mnav">
       <a href="#home" class="nav-link" aria-label="Home"><i class="fas fa-home"></i></a>
       <a href="#personal-info" class="nav-link" aria-label="Personal Info"><i class="fas fa-id-card"></i></a>
       <a href="#achievements" class="nav-link" aria-label="Achievements"><i class="fas fa-trophy"></i></a>
       <a href="#family" class="nav-link" aria-label="Family and Friends"><i class="fas fa-heart"></i></a>
-      <a href="#contact" class="nav-link" aria-label="Contact"><i class="fas fa-envelope"></i></a>
     </div>
   </div>
 </header>
@@ -209,18 +198,20 @@ nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding
 <!-- HOME -->
 <section id="home" class="page"><div class="wrap">
   <div class="hero">
-    <img class="rise" src="full body.png" alt="Full Body Portrait">
-    <p class="hi rise" style="--d:.05s;margin-bottom:6px;max-width:none;font-size:inherit;color:var(--acc)">Hi, my name is</p>
-    <h1 class="rise" style="--d:.1s">Allandrei Escoto Baniaga.</h1>
-    <h3 class="rise" style="--d:.2s">Architecting robust backend systems and configurations.</h3>
-    <p class="rise" style="--d:.3s">I’m an undergraduate Computer Science student at the <b>University of the Cordilleras</b>. I specialize in backend development, system architecture, and configuring background processes to ensure data integrity, scalability, and seamless server-side performance.</p>
-    <a href="#personal-info" class="cta inl rise" style="--d:.4s">View Personal Information <i class="fas fa-arrow-right"></i></a>
+    <div class="hx">
+      <p class="hi rise">Hi, my name is</p>
+      <h1 class="rise" style="--d:.1s">Allandrei Escoto Baniaga.</h1>
+      <h3 class="rise" style="--d:.2s">Architecting robust backend systems and configurations.</h3>
+      <p class="ds rise" style="--d:.3s">I’m an undergraduate Computer Science student at the <b>University of the Cordilleras</b>. I specialize in backend development, system architecture, and configuring background processes to ensure data integrity, scalability, and seamless server-side performance.</p>
+      <a href="#personal-info" class="cta inl rise" style="--d:.4s">View Personal Information <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="hp rise" style="--d:.15s"><img src="full body.png" alt="Allandrei Escoto Baniaga full body portrait"></div>
   </div>
 </div></section>
 
 <!-- PERSONAL INFO -->
-<section id="personal-info" class="page"><div class="wrap">
-  <div class="hd"><h2>Personal Information</h2><p>A structured overview of my personal profile, academic standing, and technical background.</p></div>
+<section id="personal-info" class="page"><div class="wrap" id="pi-wrap" style="height:auto;min-height:0;max-width:none">
+  <div class="hd row"><h2>Personal Information</h2><p>A structured overview of my personal profile, academic standing, and technical background.</p></div>
   <div class="pi">
     <div class="lc">
       <div class="c pt">
@@ -228,53 +219,94 @@ nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding
         <div class="cap"><div><b>Official Portrait</b><span>CS Undergraduate · UC</span></div><span class="on-b">Active</span></div>
       </div>
       <div class="act">
-        <a href="mailto:allandreib@gmail.com" class="c"><i class="fas fa-envelope"></i><div style="min-width:0"><b>Email</b><span>Send Mail</span></div></a>
+        <a href="mailto:allandreib@gmail.com" class="c"><i class="fas fa-envelope"></i><div style="min-width:0"><b>Email</b><span>allandreib@gmail.com</span></div></a>
         <a href="tel:+639951326966" class="c"><i class="fas fa-phone"></i><div style="min-width:0"><b>Call</b><span>+63 995 132 6966</span></div></a>
       </div>
     </div>
     <div class="rc">
-      <div class="c nm"><small>Full Name</small><h3>Allandrei Escoto Baniaga</h3></div>
-      <div class="g6">
-        <div class="c f"><small>Nickname</small><b>Tix</b></div>
-        <div class="c f"><small>Gender</small><b>Male</b></div>
-        <div class="c f"><small>Age</small><b>21 years old</b></div>
-        <div class="c f s2"><small>Birthday</small><b>August 29, 2005</b></div>
-        <div class="c f"><small>Zodiac Sign</small><b>Virgo</b></div>
-
-        <div class="c f"><small>Blood Type</small><b>AB+</b></div>
-        <div class="c f"><small>Weight</small><b>70 kg</b></div>
-        <div class="c f"><small>Height</small><b>5'5" (165 cm)</b></div>
-        <div class="c f"><small>BMI</small><b>25.7</b></div>
-        <div class="c f"><small>Eye Color</small><b>Dark Brown</b></div>
-        <div class="c f"><small>Hair Color</small><b>Black</b></div>
-
-        <div class="c f"><small>Citizenship</small><b>Filipino</b></div>
-        <div class="c f s2"><small>Place of Birth</small><b>Tondo, Manila</b></div>
-        <div class="c f"><small>Type of Birth</small><b>Single birth</b></div>
-        <div class="c f"><small>Birth Order</small><b>Eldest</b></div>
-        <div class="c f"><small>Religion</small><b>Anglican</b></div>
-
-        <div class="c f"><small>Civil Status</small><b>Single</b></div>
-        <div class="c f"><small>Year Level</small><b>1st Year</b></div>
-        <div class="c f s4"><small>Program</small><b>Bachelor of Science in Computer Science</b></div>
-
-        <div class="c f s3"><small>College</small><b>College of Information Technology &amp; Computer Science (CITCS)</b></div>
-        <div class="c f s3"><small>School</small><b>University of the Cordilleras · Ongoing</b></div>
-
-        <div class="c f s3"><small>Hobbies</small><b>Running, Gaming, Music &amp; Anime/Movies</b></div>
-        <div class="c f s3"><small>Interest &amp; Focus</small><b>Backend Development, API Architecture &amp; Database Ops</b></div>
-
-        <div class="c f s3"><small>Technical Skills</small><b>Back-end Configuration, Python, Flask, Django, Java</b></div>
-        <div class="c f s3"><small>Hometown Address</small><b>Bulacan, Philippines</b></div>
-
-        <div class="c f s2"><small>Currently Live At</small><b>Camp 8, Baguio City</b></div>
-        <div class="c f s2"><small>Email</small><b>allandreib@gmail.com</b></div>
-        <div class="c f s2"><small>Phone Number</small><b>+63 995 132 6966</b></div>
+      <div class="grp g-bg">
+        <div class="gh"><i class="fas fa-user"></i>Background</div>
+        <div class="gg" style="--n:4">
+          <div class="c f s2 hl"><small>Full Name</small><b>Allandrei Escoto Baniaga</b></div>
+          <div class="c f"><small>Nickname</small><b>Tix</b></div>
+          <div class="c f"><small>Gender</small><b>Male</b></div>
+          <div class="c f"><small>Age</small><b>21 years old</b></div>
+          <div class="c f s2"><small>Birthday</small><b>August 29, 2005</b></div>
+          <div class="c f"><small>Zodiac Sign</small><b>Virgo</b></div>
+          <div class="c f"><small>Citizenship</small><b>Filipino</b></div>
+          <div class="c f s2"><small>Place of Birth</small><b>Tondo, Manila</b></div>
+          <div class="c f"><small>Type of Birth</small><b>Single birth</b></div>
+          <div class="c f"><small>Birth Order</small><b>Eldest</b></div>
+          <div class="c f"><small>Religion</small><b>Anglican</b></div>
+          <div class="c f s2"><small>Civil Status</small><b>Single</b></div>
+          <div class="c f s2"><small>Hometown Address</small><b>Bulacan, Philippines</b></div>
+          <div class="c f s2"><small>Currently Residing At</small><b>Camp 8, Baguio City</b></div>
+          <div class="c f s4"><small>Languages Spoken</small><b>Filipino (Native) · English (Fluent) · Japanese (Beginner)</b></div>
+        </div>
+      </div>
+      <div class="grp g-ph">
+        <div class="gh"><i class="fas fa-ruler-vertical"></i>Physical Description</div>
+        <div class="gg" style="--n:2">
+          <div class="c f"><small>Height</small><b>5'5" (165 cm)</b></div>
+          <div class="c f"><small>Weight</small><b>70 kg</b></div>
+          <div class="c f"><small>BMI</small><b>25.7</b></div>
+          <div class="c f"><small>Eye Color</small><b>Dark Brown</b></div>
+          <div class="c f s2"><small>Hair Color</small><b>Black</b></div>
+          <div class="c f s2"><small>Distinguishing Marks</small><b>Big scar on forehead, another scar on temple, noticeable tattoos on forearms</b></div>
+        </div>
+      </div>
+      <div class="grp g-md">
+        <div class="gh"><i class="fas fa-heartbeat"></i>Medical</div>
+        <div class="gg" style="--n:2">
+          <div class="c f"><small>Blood Type</small><b>AB+</b></div>
+          <div class="c f"><small>Allergies</small><b>None</b></div>
+          <div class="c f s2"><small>Vision Acuity</small><b>L 100/110 · R 120/130</b></div>
+          <div class="c f s2"><small>Hearing</small><b>L Normal · R Normal</b></div>
+        </div>
+      </div>
+      <div class="grp g-pa">
+        <div class="gh"><i class="fas fa-people-roof"></i>Parents</div>
+        <div class="gg" style="--n:2">
+          <div class="c f s2"><small>Mother · BPO Manager</small><b>Nazi Irene Baniaga · 44 years old</b></div>
+          <div class="c f s2"><small>Father · Businessman</small><b>Michael Baniaga · 40 years old</b></div>
+        </div>
+      </div>
+      <div class="grp g-co">
+        <div class="gh"><i class="fas fa-graduation-cap"></i>College</div>
+        <div class="gg" style="--n:2">
+          <div class="c f s2"><small>School</small><b>University of the Cordilleras · Ongoing</b></div>
+          <div class="c f s2"><small>College</small><b>College of Information Technology &amp; Computer Science (CITCS)</b></div>
+          <div class="c f"><small>Program</small><b>Bachelor of Science in Computer Science</b></div>
+          <div class="c f"><small>Year Level</small><b>1st Year</b></div>
+        </div>
+      </div>
+      <div class="grp g-em">
+        <div class="gh"><i class="fas fa-phone-volume"></i>Emergency Contact</div>
+        <div class="gg" style="--n:2">
+          <div class="c f"><small>Contact Person</small><b>Mary Joyce Ortega</b></div>
+          <div class="c f"><small>Relationship</small><b>Life Partner</b></div>
+          <div class="c f"><small>Contact Number</small><b>+63 991 692 9539</b></div>
+          <div class="c f"><small>Address</small><b>Camp 8, Baguio City</b></div>
+        </div>
+      </div>
+      <div class="grp g-sk">
+        <div class="gh"><i class="fas fa-laptop-code"></i>Skills &amp; Hobbies</div>
+        <div class="gg" style="--n:4">
+          <div class="c f"><small>Technical Skills</small><b>Backend Configuration, Python, Flask, Django, Java</b></div>
+          <div class="c f"><small>Interest &amp; Focus</small><b>Backend Development, API Architecture &amp; Database Ops</b></div>
+          <div class="c f"><small>Hobbies</small><b>Running, Gaming, Music &amp; Anime/Movies</b></div>
+          <div class="c f"><small>Career Goals</small><b>Backend engineer or software developer within 5 years</b></div>
+          <div class="c f"><small>Work Style</small><b>Independent and flexible: hardest tasks in work hours, lighter ones in free time</b></div>
+          <div class="c f"><small>Lifestyle</small><b>Morning or afternoon runs, then study, games or movies. Sleep varies with workload.</b></div>
+          <div class="c f"><small>Strengths</small><b>Resilient problem-solver · Task-focused · Mentally prepared for big projects</b></div>
+          <div class="c f"><small>Area for Growth</small><b>Time management; I tend to take on too much at once</b></div>
+        </div>
       </div>
     </div>
   </div>
-  <a href="#achievements" class="cta">View My Achievements <i class="fas fa-arrow-right"></i></a>
-</div></section>
+</div>
+<a href="#achievements" class="cta">View My Achievements <i class="fas fa-arrow-right"></i></a>
+</section>
 
 <!-- ACHIEVEMENTS -->
 <section id="achievements" class="page"><div class="wrap">
@@ -285,11 +317,11 @@ nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding
         <div class="ti"><span class="dot"><i class="fas fa-medal"></i></span>
           <div class="c tc"><div><h3>Grade 6 (Elementary Level)</h3><em>2017</em></div><p>Track and Field Multi-Gold Medalist, Regional to National Level</p></div></div>
         <div class="ti"><span class="dot"><i class="fas fa-running"></i></span>
-          <div class="c tc"><div><h3>Grade 7 to 10 (High School Level)</h3><em>2018 - 2022</em></div><p>Track and Field Multi-Gold Medalist, Regional Level (Stopped because of COVID)</p></div></div>
+          <div class="c tc"><div><h3>Grade 7 to 10 (High School Level)</h3><em>2018–2022</em></div><p>Track and Field Multi-Gold Medalist, Regional Level (stopped because of COVID-19)</p></div></div>
         <div class="ti"><span class="dot"><i class="fas fa-stopwatch"></i></span>
-          <div class="c tc"><div><h3>Grade 11 to 12 (Senior High School Level)</h3><em>2022 - 2024</em></div><p>Co-Trainer/Coach for Elementary to High School Level Athletes, and Competed in Batang Pinoy and Regional to National Level Games</p></div></div>
+          <div class="c tc"><div><h3>Grade 11 to 12 (Senior High School Level)</h3><em>2022–2024</em></div><p>Co-trainer/coach for elementary to high school athletes; competed in Batang Pinoy and regional to national-level games</p></div></div>
       </div>
-      <div class="note"><i class="fas fa-info-circle"></i>Records can be found in the official Sports Committee Commission uploaded documents for Athlete Standing.</div>
+      <div class="note"><i class="fas fa-info-circle"></i>Records can be found in the official athlete standing documents uploaded to the Sports Committee Commission.</div>
       <div class="ph">
         <div class="c"><figure class="fig" data-lightbox><img src="Ref2.jpg" alt="Track and Field Event" loading="lazy"></figure></div>
         <div class="c"><figure class="fig" data-lightbox><img src="Ref1.jpg" alt="Palarong Pambansa 2018" loading="lazy"></figure></div>
@@ -327,47 +359,24 @@ nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding
   <div class="fam">
     <article class="c fc">
       <figure class="fig cv" style="--bg:url('mom hug.jpg')" data-lightbox><img src="mom hug.jpg" alt="Allandrei hugging his mom Nazi Irene Baniaga" loading="lazy"></figure>
-      <div class="fb"><span class="chip"><i class="fas fa-shield-alt"></i> My mom, My protector</span><div class="r"><h3>Nazi Irene Baniaga</h3><span class="pl">44 years old</span></div><p>Has always had my back no matter the journey.</p></div>
+      <div class="fb"><span class="chip"><i class="fas fa-heart"></i> My mom, my biggest supporter</span><div class="r"><h3>Nazi Irene Baniaga</h3><span class="pl">44 years old</span></div><p>Thank you for standing by me through every season of this journey, even the ones where I forgot to text back. Your love is my strength (and my Wi-Fi signal at home).</p></div>
     </article>
     <article class="c fc">
       <figure class="fig cv" style="--bg:url('dad shakehands.jpg')" data-lightbox><img src="dad shakehands.jpg" alt="Allandrei shaking hands with his dad Michael Baniaga" loading="lazy"></figure>
-      <div class="fb"><span class="chip"><i class="fas fa-hands-helping"></i> My dad, My backup</span><div class="r"><h3>Michael Baniaga</h3><span class="pl">40 years old</span></div><p>No matter what the circumstance, he will always be there for me.</p></div>
+      <div class="fb"><span class="chip"><i class="fas fa-hands-helping"></i> My dad, certified life support</span><div class="r"><h3>Michael Baniaga</h3><span class="pl">40 years old</span></div><p>Thank you for always showing up, which is more than I can say for my deadlines. Knowing you’ve got my back gives me the courage to keep going.</p></div>
     </article>
     <article class="c fc">
       <figure class="fig cv" style="--bg:url('siblings.jpg')" data-lightbox><img src="siblings.jpg" alt="Allandrei with his siblings Summer, Rhain, Eina, and Memel" loading="lazy"></figure>
-      <div class="fb"><span class="chip"><i class="fas fa-users"></i> My lovely blood enemies</span><h3>Summer, Rhain, Eina &amp; Memel</h3>
-        <div class="tags"><span class="pl">Summer · 18 yrs old</span><span class="pl">Rhain · 19 yrs old</span><span class="pl">Eina · 8 yrs old</span><span class="pl">Memel · 4 yrs old</span></div>
-        <p>My siblings whom I share my blood with, who yet make my blood boil, but I love them as deep as I love my family.</p></div>
+      <div class="fb"><span class="chip"><i class="fas fa-users"></i> My siblings, my chaos crew</span><h3>Summer, Rhain, Eina &amp; Memel</h3>
+        <div class="tags"><span class="pl">Summer · 18 years old</span><span class="pl">Rhain · 19 years old</span><span class="pl">Eina · 16 years old</span><span class="pl">Memel · 7 years old</span></div>
+        <p>We drive each other crazy on a daily basis, but you’re still the best part of my life. I’m proud of each of you, and I’ll always be in your corner, mostly as the referee.</p></div>
     </article>
     <article class="c fc">
       <figure class="fig cv" style="--bg:url('Friends.jpg')" data-lightbox><img src="Friends.jpg" alt="Allandrei with his track and field teammates and friends" loading="lazy"></figure>
-      <div class="fb"><span class="chip"><i class="fas fa-user-friends"></i> Chosen Family</span><h3>The family I’ve always loved despite not being blood related.</h3><p>I won’t be who I am without them.</p></div>
+      <div class="fb"><span class="chip"><i class="fas fa-user-friends"></i> Chosen Family (No DNA Test Needed)</span><h3>The family I found along the way. No refunds.</h3><p>We’re not related by blood, yet you adopted me anyway. I wouldn’t be who I am without you, so yes, this is partly your fault.</p></div>
     </article>
   </div>
-  <a href="#contact" class="cta">Get In Touch <i class="fas fa-arrow-right"></i></a>
-</div></section>
-
-<!-- CONTACT -->
-<section id="contact" class="page"><div class="wrap" style="max-width:1000px">
-  <div class="hd"><h2>Send a Message</h2><p>Have a question regarding backend configurations or want to collaborate?</p></div>
-  <div class="ct">
-    <form class="c" id="msg-form">
-      <div class="fld"><label for="sender-email">Email Address</label><input type="email" id="sender-email" name="sender-email" required placeholder="Your email address"></div>
-      <div class="fld g"><label for="message">Message</label><textarea id="message" name="message" required placeholder="Your message here..."></textarea></div>
-      <button type="submit" class="send"><span>Send Message</span><i class="fas fa-paper-plane"></i></button>
-    </form>
-    <div class="c conn">
-      <h3>Let’s Connect</h3>
-      <a href="mailto:allandreib@gmail.com" class="pill"><i class="fas fa-envelope"></i><span>allandreib@gmail.com</span></a>
-      <a href="tel:+639951326966" class="pill"><i class="fas fa-phone"></i><span>+63 995 132 6966</span></a>
-      <div class="soc">
-        <a href="#" title="Instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" title="Facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      </div>
-      <small>&copy; <script>document.write(new Date().getFullYear())</script> Allandrei Escoto Baniaga. Single Page Application.</small>
-    </div>
-  </div>
+  <a href="#home" class="cta">Back to Home <i class="fas fa-arrow-up"></i></a>
 </div></section>
 
 <!-- Image Lightbox -->
@@ -412,6 +421,29 @@ document.addEventListener("DOMContentLoaded", () => {
     if (order[i]) { history.pushState(null, "", order[i]); show(order[i]); }
   });
 
+
+  // Personal Information: scale the layout so everything fits on one screen (desktop)
+  const piPage = document.getElementById("personal-info"), piWrap = document.getElementById("pi-wrap");
+  function fitPI() {
+    const cs = getComputedStyle(piPage);
+    const aw = piPage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    const ah = piPage.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    let k = 1.7, W = aw / k, h = 0;
+    for (; k >= 0.3; k -= 0.02) {
+      W = aw / k;
+      piWrap.style.cssText = `height:auto;min-height:0;max-width:none;width:${W}px;transform:none;margin:0`;
+      h = piWrap.offsetHeight;
+      if (h * k <= ah) break;
+    }
+    piWrap.style.transformOrigin = "top left";
+    piWrap.style.transform = `scale(${k})`;
+    piWrap.style.marginTop = Math.max(0, (ah - h * k) / 2) + "px";
+  }
+  fitPI();
+  addEventListener("resize", fitPI);
+  addEventListener("load", fitPI);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitPI);
+
   // Cursor glow
   const glow = document.getElementById("glow");
   document.addEventListener("mousemove", e => { glow.style.transform = `translate(${e.clientX - 48}px,${e.clientY - 48}px)`; });
@@ -431,13 +463,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (lb.classList.contains("open")) closeLB();
   });
 
-  // Contact form: opens the visitor's mail app instead of reloading the page
-  document.getElementById("msg-form").addEventListener("submit", e => {
-    e.preventDefault();
-    const f = e.target;
-    const body = encodeURIComponent(f.message.value + "\n\nFrom: " + f["sender-email"].value);
-    location.href = "mailto:allandreib@gmail.com?subject=" + encodeURIComponent("Portfolio message") + "&body=" + body;
-  });
 });
 </script>
 </body>
