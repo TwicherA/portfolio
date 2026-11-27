@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Allandrei Escoto Baniaga | CS Portfolio</title>
+<meta name="description" content="Portfolio of Allandrei Escoto Baniaga, BS Computer Science student at the University of the Cordilleras: backend development, track and field achievements, and the people behind the journey.">
+<meta name="theme-color" content="#0b0c10">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='2' y='2' width='60' height='60' rx='14' fill='%230b0c10' stroke='%2366fcf1' stroke-width='4'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='700' font-size='24' text-anchor='middle'%3E%3Ctspan fill='%23ffffff'%3EA%3C/tspan%3E%3Ctspan fill='%2366fcf1'%3EE%3C/tspan%3E%3Ctspan fill='%23ffffff'%3EB%3C/tspan%3E%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Allandrei Escoto Baniaga | CS Portfolio">
+<meta property="og:description" content="Portfolio of Allandrei Escoto Baniaga, BS Computer Science student at the University of the Cordilleras: backend development, track and field achievements, and the people behind the journey.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Allandrei Escoto Baniaga | CS Portfolio">
+<meta name="twitter:description" content="Portfolio of Allandrei Escoto Baniaga, BS Computer Science student at the University of the Cordilleras: backend development, track and field achievements, and the people behind the journey.">
+<meta name="twitter:image" content="og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -23,12 +37,29 @@ img{display:block}
 
 /* Header */
 header{position:fixed;inset:0 0 auto;height:64px;z-index:50;background:rgba(11,12,16,.72);backdrop-filter:blur(12px);border-bottom:1px solid rgba(69,162,158,.2)}
-.bar{max-width:none;margin:auto;height:100%;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.bar{position:relative;max-width:none;margin:auto;height:100%;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-size:22px;font-weight:700;color:#fff;letter-spacing:-.04em}.logo span{color:var(--acc)}
 nav,.mnav{display:flex;gap:4px}.mnav{display:none}
 .nav-link{position:relative;padding:8px 14px;font-size:13.5px;font-weight:500;color:var(--tx);transition:color .2s}
 .nav-link::after{content:"";position:absolute;left:14px;right:14px;bottom:2px;height:2px;border-radius:2px;background:var(--acc);transform:scaleX(0);transition:transform .3s}
 .nav-link.on{color:var(--acc)}.nav-link.on::after{transform:scaleX(1)}
+/* Centered nav + hover glow */
+nav,.mnav{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+.nav-link{border-radius:10px;transition:color .25s,background .25s,text-shadow .25s,transform .25s}
+.nav-link:hover{color:var(--acc);background:rgba(102,252,241,.08);text-shadow:0 0 10px var(--acc);transform:translateY(-1px);animation:navGlow 1.8s ease-in-out infinite}
+.nav-link:hover::after{transform:scaleX(1);box-shadow:0 0 10px var(--acc)}
+@keyframes navGlow{0%,100%{box-shadow:0 0 8px rgba(102,252,241,.25),inset 0 0 8px rgba(102,252,241,.06)}50%{box-shadow:0 0 22px rgba(102,252,241,.6),inset 0 0 12px rgba(102,252,241,.16)}}
+@keyframes navGlowL{0%,100%{box-shadow:0 0 8px rgba(11,97,119,.2),inset 0 0 8px rgba(11,97,119,.05)}50%{box-shadow:0 0 20px rgba(11,97,119,.45),inset 0 0 12px rgba(11,97,119,.12)}}
+
+/* Theme switch (bottom right) */
+.tsw{position:fixed;right:18px;bottom:16px;z-index:60;width:68px;height:34px;padding:0 10px;display:flex;align-items:center;justify-content:space-between;border:1px solid rgba(102,252,241,.4);border-radius:99px;background:rgba(11,12,16,.8);backdrop-filter:blur(8px);color:var(--acc);font-size:13px;cursor:pointer;box-shadow:0 0 14px rgba(102,252,241,.2);transition:box-shadow .25s,background .3s,border-color .3s}
+.tsw:hover{box-shadow:0 0 22px rgba(102,252,241,.5)}
+.tsw .knob{position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:var(--acc);transition:transform .3s}
+.tsw i{position:relative;z-index:1;transition:color .3s}
+.tsw .fa-moon{color:var(--bg)}
+[data-theme=light] .tsw .knob{transform:translateX(34px)}
+[data-theme=light] .tsw .fa-moon{color:var(--acc)}
+[data-theme=light] .tsw .fa-sun{color:#e6e9ed}
 
 /* Pages: each one fills the viewport exactly */
 .page{position:absolute;inset:0;padding:80px 20px 68px;overflow-y:auto;opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s}
@@ -71,7 +102,7 @@ h1{font-size:clamp(34px,4.6vw,64px);font-weight:700;color:#fff;letter-spacing:-.
 .pt{flex:1;min-height:0;padding:10px;display:flex;flex-direction:column;position:relative;overflow:hidden;border-color:rgba(102,252,241,.3)}
 .pt::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,var(--acc),transparent)}
 .pt .fig{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(5,6,8,.9));margin-top:4px}
-.pt .fig img{object-position:bottom}
+.pt{padding:6px}.pt .fig{margin-top:0}.pt .fig img{object-fit:cover;object-position:50% 18%}
 .cap{display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding:0 4px}
 .cap b{display:block;font-size:12.5px;color:var(--acc);font-weight:600}.cap span{font-size:11.5px;color:rgba(197,198,199,.6)}
 .on-b{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;color:var(--acc)}
@@ -102,7 +133,7 @@ h1{font-size:clamp(34px,4.6vw,64px);font-weight:700;color:#fff;letter-spacing:-.
 .pi .rc{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px 18px}
 .g-bg{grid-column:span 6}.g-ph,.g-md{grid-column:span 3}.g-pa,.g-co,.g-em{grid-column:span 4}.g-sk{grid-column:span 12}
 .s6{grid-column:span 6}.s8{grid-column:span 8}
-.pi{grid-template-columns:250px minmax(0,1fr);gap:20px;align-items:stretch}
+.pi{grid-template-columns:330px minmax(0,1fr);gap:20px;align-items:stretch}
 .pi .lc{align-self:stretch}
 .act{grid-template-columns:1fr}
 
@@ -160,22 +191,105 @@ h1{font-size:clamp(34px,4.6vw,64px);font-weight:700;color:#fff;letter-spacing:-.
 /* Tablet and phone: pages stack and may scroll, since they can't fit */
 @media(max-width:1023px){
 nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding:0 16px}
-.page{padding:80px 16px 24px}.wrap{height:auto;min-height:0}
+.page{padding:80px 16px 64px}.wrap{height:auto;min-height:0}
 .pi,.two,.fam,.lvs{display:flex;flex-direction:column}
 .g8{grid-template-columns:repeat(2,minmax(0,1fr));flex:none}
 .s2,.s3,.s4,.s5,.s6,.s8{grid-column:span 2}.pi .rc{display:flex;flex-direction:column;gap:22px}.gg{grid-template-columns:repeat(2,minmax(0,1fr))}.g-bg,.g-ph,.g-md,.g-pa,.g-co,.g-em,.g-sk{grid-column:auto}
-.pt{flex:none}.pt .fig{flex:none;height:360px}
+.pt{flex:none}.pt .fig{flex:none;height:440px}
 .fc{flex:none}.fc .fig{flex:none;height:320px}
 .ph{flex:none;height:150px}.lv{flex:none}.lv .fig{min-height:110px}
 .col{margin-bottom:24px}
 .cta,.cta.inl{position:static;transform:none;align-self:center;margin:22px 0 0}
 .hero{display:flex;flex-direction:column-reverse;gap:16px;height:auto}.hp{height:340px;flex:none}.hx{align-items:center;text-align:center}
 }
+
+/* Home: typed role + stats */
+.role{font-size:clamp(15px,1.5vw,20px);font-weight:600;color:var(--acc);margin-bottom:8px;min-height:1.5em}
+.role .rl{color:var(--tx);font-weight:500}
+.caret{display:inline-block;width:2px;height:1.05em;margin-left:3px;vertical-align:-.15em;background:var(--acc);animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.stat{padding:9px 16px;min-width:92px}
+.stat b{display:block;font-size:clamp(17px,1.6vw,22px);font-weight:700;color:var(--acc);line-height:1.2}
+.stat span{display:block;font-size:11.5px;color:rgba(197,198,199,.72);line-height:1.3}
+.stat:hover{transform:translateY(-2px)}
+.stat{transition:transform .25s,border-color .25s,box-shadow .25s}
+/* Skill chips */
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:3px}
+.chips span{font-size:11px;font-weight:500;line-height:1.3;padding:2px 9px;border-radius:99px;color:var(--acc);background:rgba(102,252,241,.08);border:1px solid rgba(102,252,241,.28);transition:background .2s,box-shadow .2s}
+.chips span:hover{background:rgba(102,252,241,.18);box-shadow:0 0 10px rgba(102,252,241,.35)}
+/* Lightbox gallery */
+#lb img{max-height:calc(100% - 64px)}
+#lb .lb-nav{top:50%;right:auto;transform:translateY(-50%);width:48px;height:48px;font-size:16px}
+#lb .lb-prev{left:18px}#lb .lb-next{right:18px}
+#lb.single .lb-nav,#lb.single #lb-count{display:none}
+.lb-cap{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);max-width:min(92vw,720px);display:flex;gap:12px;align-items:center;justify-content:center;padding:7px 16px;border-radius:99px;background:rgba(255,255,255,.1);backdrop-filter:blur(8px);color:#eceff1;font-size:13px;text-align:center;line-height:1.35;cursor:default}
+.lb-cap em{font-style:normal;font-weight:600;color:#66fcf1;white-space:nowrap}
+@media(max-width:1023px){.stats{justify-content:center}.hx .role{text-align:center}#lb .lb-nav{width:40px;height:40px}#lb .lb-prev{left:8px}#lb .lb-next{right:8px}}
+
+/* Family quotes */
+.fb .qt{margin-top:9px;padding-left:10px;border-left:2px solid var(--acc);font-size:12.5px;font-style:italic;font-weight:500;line-height:1.4;color:var(--acc)}
+/* Page indicator dots */
+.dots{position:fixed;right:2px;top:50%;transform:translateY(-50%);z-index:55;display:flex;flex-direction:column;gap:4px}
+.dots a{position:relative;display:block;width:14px;height:22px}
+.dots a::before{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;border-radius:50%;transform:translate(-50%,-50%);background:rgba(197,198,199,.35);transition:all .25s}
+.dots a:hover::before{background:var(--acc);box-shadow:0 0 10px var(--acc)}
+.dots a.on::before{width:9px;height:14px;border-radius:5px;background:var(--acc);box-shadow:0 0 10px var(--acc)}
+.dots a::after{content:attr(data-label);position:absolute;right:20px;top:50%;transform:translateY(-50%) translateX(6px);padding:3px 10px;border-radius:99px;white-space:nowrap;font-size:11.5px;font-weight:600;color:var(--acc);background:rgba(11,12,16,.85);border:1px solid rgba(102,252,241,.35);opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
+.dots a:hover::after{opacity:1;transform:translateY(-50%)}
+
+/* Light theme (dimmed, easy on the eyes) */
+html[data-theme=light]{--acc:#0b6177;--acc2:#0a5f58;--bg:#d6dadf;--tx:#363d45;--ln:rgba(20,30,40,.14)}
+body{transition:background .3s,color .3s}
+[data-theme=light] .bg{background:radial-gradient(42rem 30rem at 0 0,rgba(11,97,119,.14),transparent 60%),radial-gradient(36rem 30rem at 100% 25%,rgba(14,116,144,.09),transparent 60%),radial-gradient(40rem 30rem at 30% 110%,rgba(124,92,180,.12),transparent 60%)}
+[data-theme=light] header{background:rgba(214,218,223,.82);border-bottom-color:rgba(11,97,119,.25)}
+[data-theme=light] :is(.logo,h1,h2,.nm h3,.f b,.tc h3,.tx h3,.fb h3){color:#1c232b}
+[data-theme=light] :is(.hd p,.hx h3,.hx p.ds,.tc p,.tx p,.fb p,.cap span,.act span,.stat span){color:rgba(40,48,58,.82)}
+[data-theme=light] .c{background:rgba(255,255,255,.42)}
+[data-theme=light] .c:hover{border-color:rgba(11,97,119,.5);box-shadow:0 0 24px rgba(11,97,119,.14)}
+[data-theme=light] :is(.nm,.hl){background:linear-gradient(90deg,rgba(11,97,119,.16),rgba(255,255,255,.4));border-color:rgba(11,97,119,.35)}
+[data-theme=light] .pt .fig{background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(190,196,204,.8))}
+[data-theme=light] .lv{background:linear-gradient(180deg,color-mix(in srgb,var(--k) 12%,transparent),rgba(255,255,255,.5))}
+[data-theme=light] .lv .fig{background:rgba(255,255,255,.5)}
+[data-theme=light] :is(.cta,.chip){background:rgba(224,227,231,.92)}
+[data-theme=light] .cta{box-shadow:0 0 14px rgba(11,97,119,.2)}
+[data-theme=light] .cta:hover{background:var(--acc);color:#e6e9ed;box-shadow:0 0 26px rgba(11,97,119,.45)}
+[data-theme=light] .chips span{background:rgba(11,97,119,.08);border-color:rgba(11,97,119,.3)}
+[data-theme=light] .chips span:hover{background:rgba(11,97,119,.16);box-shadow:0 0 10px rgba(11,97,119,.3)}
+[data-theme=light] .dots a::before{background:rgba(40,48,58,.3)}
+[data-theme=light] .dots a:hover::before{background:var(--acc);box-shadow:0 0 8px rgba(11,97,119,.5)}
+[data-theme=light] .dots a.on::before{background:var(--acc);box-shadow:0 0 8px rgba(11,97,119,.5)}
+[data-theme=light] .dots a::after{background:rgba(224,227,231,.95);border-color:rgba(11,97,119,.35)}
+[data-theme=light] .pl{background:rgba(255,255,255,.5);border-color:rgba(11,97,119,.3)}
+[data-theme=light] .note{background:rgba(11,97,119,.07);border-color:rgba(11,97,119,.25)}
+[data-theme=light] :is(.gh i,.act i){background:rgba(11,97,119,.1);border-color:rgba(11,97,119,.3)}
+[data-theme=light] .hp::before{background:radial-gradient(closest-side,rgba(11,97,119,.18),transparent 78%)}
+[data-theme=light] .hp img{filter:drop-shadow(0 0 18px rgba(11,97,119,.3))}
+[data-theme=light] .hp img:hover{filter:drop-shadow(0 0 32px rgba(11,97,119,.6))}
+[data-theme=light] .nav-link:hover{background:rgba(11,97,119,.1);text-shadow:0 0 8px rgba(11,97,119,.35);animation-name:navGlowL}
+[data-theme=light] .nav-link:hover::after{box-shadow:0 0 8px rgba(11,97,119,.5)}
+[data-theme=light] .tsw{background:rgba(224,227,231,.92);border-color:rgba(11,97,119,.4);box-shadow:0 0 14px rgba(11,97,119,.2)}
+[data-theme=light] .tsw:hover{box-shadow:0 0 22px rgba(11,97,119,.45)}
 </style>
+<script>try{if(localStorage.getItem("theme")==="light")document.documentElement.setAttribute("data-theme","light")}catch(e){}</script>
 </head>
 <body>
 <div id="glow"></div>
 <div class="bg"></div>
+<button id="themeToggle" class="tsw" type="button" role="switch" aria-checked="false" aria-label="Switch to light mode" title="Light / dark mode"><i class="fas fa-moon"></i><i class="fas fa-sun"></i><span class="knob"></span></button>
+<script>
+(function(){
+  var r=document.documentElement,b=document.getElementById("themeToggle");
+  function sync(){var l=r.getAttribute("data-theme")==="light";b.setAttribute("aria-checked",l?"true":"false");b.setAttribute("aria-label",l?"Switch to dark mode":"Switch to light mode");}
+  sync();
+  b.addEventListener("click",function(){
+    var l=r.getAttribute("data-theme")!=="light";
+    if(l)r.setAttribute("data-theme","light");else r.removeAttribute("data-theme");
+    try{localStorage.setItem("theme",l?"light":"dark")}catch(e){}
+    sync();
+  });
+})();
+</script>
 
 <header>
   <div class="bar">
@@ -195,15 +309,29 @@ nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding
   </div>
 </header>
 
+<div class="dots" role="navigation" aria-label="Page indicator">
+  <a href="#home" data-label="Home" aria-label="Home"></a>
+  <a href="#personal-info" data-label="Personal Info" aria-label="Personal Info"></a>
+  <a href="#achievements" data-label="Achievements" aria-label="Achievements"></a>
+  <a href="#family" data-label="Family &amp; Friends" aria-label="Family and Friends"></a>
+</div>
+
 <!-- HOME -->
 <section id="home" class="page"><div class="wrap">
   <div class="hero">
     <div class="hx">
       <p class="hi rise">Hi, my name is</p>
       <h1 class="rise" style="--d:.1s">Allandrei Escoto Baniaga.</h1>
+      <p class="role rise" style="--d:.15s"><span class="rl">I’m a </span><span id="typed" aria-live="off">Backend Developer</span><span class="caret" aria-hidden="true"></span></p>
       <h3 class="rise" style="--d:.2s">Architecting robust backend systems and configurations.</h3>
       <p class="ds rise" style="--d:.3s">I’m an undergraduate Computer Science student at the <b>University of the Cordilleras</b>. I specialize in backend development, system architecture, and configuring background processes to ensure data integrity, scalability, and seamless server-side performance.</p>
       <a href="#personal-info" class="cta inl rise" style="--d:.4s">View Personal Information <i class="fas fa-arrow-right"></i></a>
+      <div class="stats rise" style="--d:.5s">
+        <div class="c stat"><b>2017</b><span>Track &amp; Field since</span></div>
+        <div class="c stat"><b>3</b><span>Graduations</span></div>
+        <div class="c stat"><b>3</b><span>Languages</span></div>
+        <div class="c stat"><b>1st</b><span>Year · BS Computer Science</span></div>
+      </div>
     </div>
     <div class="hp rise" style="--d:.15s"><img src="full body.png" alt="Allandrei Escoto Baniaga full body portrait"></div>
   </div>
@@ -230,9 +358,10 @@ nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding
           <div class="c f s2 hl"><small>Full Name</small><b>Allandrei Escoto Baniaga</b></div>
           <div class="c f"><small>Nickname</small><b>Tix</b></div>
           <div class="c f"><small>Gender</small><b>Male</b></div>
-          <div class="c f s2"><small>Birthday</small><b>August 29, 2005</b></div>
+          <div class="c f"><small>Birthday</small><b>August 29, 2005</b></div>
           <div class="c f"><small>Age</small><b>21 years old</b></div>
           <div class="c f"><small>Zodiac Sign</small><b>Virgo</b></div>
+          <div class="c f"><small>Chinese Zodiac</small><b>Year of the Rooster</b></div>
           <div class="c f s2"><small>Place of Birth</small><b>Tondo, Manila</b></div>
           <div class="c f"><small>Citizenship</small><b>Filipino</b></div>
           <div class="c f"><small>Civil Status</small><b>Single</b></div>
@@ -250,6 +379,10 @@ nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding
           <div class="c f"><small>Height</small><b>5'5" (165 cm)</b></div>
           <div class="c f"><small>Weight</small><b>70 kg (154 lbs)</b></div>
           <div class="c f"><small>BMI</small><b>25.7 (Overweight)</b></div>
+          <div class="c f"><small>Body Type</small><b>Endomorph</b></div>
+          <div class="c f"><small>Shoe Size</small><b>41.5</b></div>
+          <div class="c f"><small>Waistline</small><b>32</b></div>
+          <div class="c f"><small>Shirt Size</small><b>Medium to Large</b></div>
           <div class="c f"><small>Skin Tone</small><b>Brown</b></div>
           <div class="c f"><small>Eye Color</small><b>Dark Brown</b></div>
           <div class="c f"><small>Hair Color</small><b>Black</b></div>
@@ -295,14 +428,14 @@ nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding
       <div class="grp g-sk">
         <div class="gh"><i class="fas fa-laptop-code"></i>Skills &amp; Hobbies</div>
         <div class="gg" style="--n:4">
-          <div class="c f"><small>Technical Skills</small><b>Backend Configuration, Python, Flask, Django, Java</b></div>
-          <div class="c f"><small>Interest &amp; Focus</small><b>Backend Development, APIs &amp; Databases</b></div>
+          <div class="c f"><small>Technical Skills</small><div class="chips"><span>Backend Configuration</span><span>Python</span><span>Flask</span><span>Django</span><span>Java</span></div></div>
+          <div class="c f"><small>Interest &amp; Focus</small><div class="chips"><span>Backend Development</span><span>APIs &amp; Databases</span></div></div>
           <div class="c f"><small>Career Goals</small><b>Backend engineer or software developer in 5 years</b></div>
           <div class="c f"><small>Strengths</small><b>Resilient · Task-focused · Ready for big projects</b></div>
           <div class="c f"><small>Area for Growth</small><b>Time management; I take on too much at once</b></div>
           <div class="c f"><small>Work Style</small><b>Independent and flexible; hard tasks in work hours, light ones after</b></div>
           <div class="c f"><small>Lifestyle</small><b>Runs, then study, games or movies; sleep varies with workload</b></div>
-          <div class="c f"><small>Hobbies</small><b>Running, Gaming, Music &amp; Anime/Movies</b></div>
+          <div class="c f"><small>Hobbies</small><div class="chips"><span>Running</span><span>Gaming</span><span>Music</span><span>Anime/Movies</span></div></div>
         </div>
       </div>
     </div>
@@ -362,21 +495,21 @@ nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding
   <div class="fam">
     <article class="c fc">
       <figure class="fig cv" style="--bg:url('mom hug.jpg')" data-lightbox><img src="mom hug.jpg" alt="Allandrei hugging his mom Nazi Irene Baniaga" loading="lazy"></figure>
-      <div class="fb"><span class="chip"><i class="fas fa-heart"></i> My mom, my biggest supporter</span><div class="r"><h3>Nazi Irene Baniaga</h3><span class="pl">44 years old</span></div><p>Thank you for standing by me through every season of this journey, even the ones where I forgot to text back. Your love is my strength (and my Wi-Fi signal at home).</p></div>
+      <div class="fb"><span class="chip"><i class="fas fa-heart"></i> My mom, my biggest supporter</span><div class="r"><h3>Nazi Irene Baniaga</h3><span class="pl">44 years old</span></div><p>Thank you for standing by me through every season of this journey, even the ones where I forgot to text back. Your love is my strength (and my Wi-Fi signal at home).</p><p class="qt">“Everything I build, I build with you in mind.”</p></div>
     </article>
     <article class="c fc">
       <figure class="fig cv" style="--bg:url('dad shakehands.jpg')" data-lightbox><img src="dad shakehands.jpg" alt="Allandrei shaking hands with his dad Michael Baniaga" loading="lazy"></figure>
-      <div class="fb"><span class="chip"><i class="fas fa-hands-helping"></i> My dad, certified life support</span><div class="r"><h3>Michael Baniaga</h3><span class="pl">40 years old</span></div><p>Thank you for always showing up, which is more than I can say for my deadlines. Knowing you’ve got my back gives me the courage to keep going.</p></div>
+      <div class="fb"><span class="chip"><i class="fas fa-hands-helping"></i> My dad, certified life support</span><div class="r"><h3>Michael Baniaga</h3><span class="pl">40 years old</span></div><p>Thank you for always showing up, which is more than I can say for my deadlines. Knowing you’ve got my back gives me the courage to keep going.</p><p class="qt">“You showed me what steady looks like.”</p></div>
     </article>
     <article class="c fc">
       <figure class="fig cv" style="--bg:url('siblings.jpg')" data-lightbox><img src="siblings.jpg" alt="Allandrei with his siblings Summer, Rhain, Eina, and Memel" loading="lazy"></figure>
       <div class="fb"><span class="chip"><i class="fas fa-users"></i> My siblings, my chaos crew</span><h3>Summer, Rhain, Eina &amp; Memel</h3>
         <div class="tags"><span class="pl">Summer · 18 years old</span><span class="pl">Rhain · 19 years old</span><span class="pl">Eina · 16 years old</span><span class="pl">Memel · 7 years old</span></div>
-        <p>We drive each other crazy on a daily basis, but you’re still the best part of my life. I’m proud of each of you, and I’ll always be in your corner, mostly as the referee.</p></div>
+        <p>We drive each other crazy on a daily basis, but you’re still the best part of my life. I’m proud of each of you, and I’ll always be in your corner, mostly as the referee.</p><p class="qt">“Wherever you go, I’ll be right behind you.”</p></div>
     </article>
     <article class="c fc">
       <figure class="fig cv" style="--bg:url('Friends.jpg')" data-lightbox><img src="Friends.jpg" alt="Allandrei with his track and field teammates and friends" loading="lazy"></figure>
-      <div class="fb"><span class="chip"><i class="fas fa-user-friends"></i> Chosen Family (No DNA Test Needed)</span><h3>The family I found along the way. No refunds.</h3><p>We’re not related by blood, yet you adopted me anyway. I wouldn’t be who I am without you, so yes, this is partly your fault.</p></div>
+      <div class="fb"><span class="chip"><i class="fas fa-user-friends"></i> Chosen Family (No DNA Test Needed)</span><h3>The family I found along the way. No refunds.</h3><p>We’re not related by blood, yet you adopted me anyway. I wouldn’t be who I am without you, so yes, this is partly your fault.</p><p class="qt">“Every finish line is better with you at it.”</p></div>
     </article>
   </div>
   <a href="#home" class="cta">Back to Home <i class="fas fa-arrow-up"></i></a>
@@ -385,7 +518,10 @@ nav{display:none}.mnav{display:flex}.mnav .nav-link{padding:8px 9px}.bar{padding
 <!-- Image Lightbox -->
 <div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
   <button type="button" aria-label="Close image viewer"><i class="fas fa-times"></i></button>
+  <button type="button" class="lb-nav lb-prev" aria-label="Previous image"><i class="fas fa-chevron-left"></i></button>
   <img id="lb-img" src="" alt="">
+  <button type="button" class="lb-nav lb-next" aria-label="Next image"><i class="fas fa-chevron-right"></i></button>
+  <div class="lb-cap"><span id="lb-text"></span><em id="lb-count"></em></div>
 </div>
 
 <script>
@@ -404,6 +540,7 @@ document.addEventListener("DOMContentLoaded", () => {
       l.classList.toggle("on", on);
       on ? l.setAttribute("aria-current", "page") : l.removeAttribute("aria-current");
     });
+    document.querySelectorAll(".dots a").forEach(d => d.classList.toggle("on", d.getAttribute("href") === h));
   }
 
   document.addEventListener("click", e => {
@@ -419,6 +556,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Arrow keys move between pages
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") closeLB();
+    if (lb.classList.contains("open")) { if (e.key === "ArrowLeft") { showLB(lbIdx - 1); return; } if (e.key === "ArrowRight") { showLB(lbIdx + 1); return; } }
     if (!["ArrowLeft", "ArrowRight"].includes(e.key) || /INPUT|TEXTAREA/.test(e.target.tagName) || lb.classList.contains("open")) return;
     const i = order.indexOf(current) + (e.key === "ArrowRight" ? 1 : -1);
     if (order[i]) { history.pushState(null, "", order[i]); show(order[i]); }
@@ -453,19 +591,55 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("mouseleave", () => glow.style.opacity = "0");
   document.addEventListener("mouseenter", () => glow.style.opacity = ".16");
 
-  // Lightbox
+  // Typed role line (Home)
+  const typed = document.getElementById("typed");
+  const roles = ["Backend Developer", "Computer Science Student", "Track & Field Athlete"];
+  if (typed && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    let r = 0, c = 0, del = false;
+    (function tick() {
+      const w = roles[r];
+      typed.textContent = w.slice(0, c);
+      let d = del ? 35 : 70;
+      if (!del && c === w.length) { del = true; d = 1500; }
+      else if (del && c === 0) { del = false; r = (r + 1) % roles.length; d = 300; }
+      else c += del ? -1 : 1;
+      setTimeout(tick, d);
+    })();
+  }
+
+  // Lightbox gallery: arrows, captions, counter (per page)
   const lb = document.getElementById("lb"), lbImg = document.getElementById("lb-img");
+  const lbText = document.getElementById("lb-text"), lbCount = document.getElementById("lb-count");
+  let lbList = [], lbIdx = 0;
+  function showLB(i) {
+    lbIdx = (i + lbList.length) % lbList.length;
+    const img = lbList[lbIdx].querySelector("img");
+    lbImg.src = img.src; lbImg.alt = img.alt || "";
+    lbText.textContent = img.alt || "";
+    lbCount.textContent = (lbIdx + 1) + " / " + lbList.length;
+    lb.classList.toggle("single", lbList.length < 2);
+  }
   function closeLB() { lb.classList.remove("open"); lbImg.src = ""; }
   document.addEventListener("click", e => {
+    const nav = e.target.closest(".lb-nav");
+    if (nav) { showLB(lbIdx + (nav.classList.contains("lb-next") ? 1 : -1)); return; }
     const fig = e.target.closest("[data-lightbox]");
     if (fig) {
-      const img = fig.querySelector("img");
-      if (img) { lbImg.src = img.src; lbImg.alt = img.alt || ""; lb.classList.add("open"); }
+      const scope = fig.closest(".page") || document;
+      lbList = [...scope.querySelectorAll("[data-lightbox]")];
+      showLB(lbList.indexOf(fig));
+      lb.classList.add("open");
       return;
     }
     if (lb.classList.contains("open")) closeLB();
   });
-
+  let tx = null;
+  lb.addEventListener("touchstart", e => { tx = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener("touchend", e => {
+    if (tx === null) return;
+    const dx = e.changedTouches[0].clientX - tx; tx = null;
+    if (Math.abs(dx) > 50 && lbList.length > 1) showLB(lbIdx + (dx < 0 ? 1 : -1));
+  });
 });
 </script>
 </body>
